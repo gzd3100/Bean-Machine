@@ -235,23 +235,32 @@
 
 <script>
     function showTab(id) {
+        // 1. On cache toutes les pages
         document.querySelectorAll('.tab-content').forEach(t => {
             t.classList.remove('active');
             t.style.display = 'none';
         });
+
+        // 2. On récupère la page cible
         const target = document.getElementById(id);
-        
+        if (!target) return;
+
+        // 3. On gère l'affichage selon le type de page
         if(id === 'formules' || id === 'equipe' || id === 'contact' || id === 'accueil') {
             target.style.display = 'flex';
         } else {
             target.style.display = 'block';
         }
         
+        // 4. Petit délai pour l'animation
         setTimeout(() => target.classList.add('active'), 20);
         
+        // 5. On met à jour les liens de la navigation
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
         const link = document.getElementById('l-' + id);
         if(link) link.classList.add('active-link');
+
+        // 6. On remonte en haut de page
         window.scrollTo(0,0);
     }
 
@@ -260,6 +269,7 @@
         document.getElementById('modalPrice').innerText = price;
         document.getElementById('modalDesc').innerText = desc;
         document.getElementById('modalImg').src = img;
+        // On transforme les \n en sauts de ligne réels
         document.getElementById('modalRecipe').innerHTML = recipe.replace(/\n/g, '<br>');
         document.getElementById('itemModal').style.display = 'flex';
     }
@@ -268,8 +278,10 @@
         document.getElementById('itemModal').style.display = 'none'; 
     }
 
+    // Fermeture en cliquant à côté de la modale
     window.onclick = function(e) { 
-        if (e.target == document.getElementById('itemModal')) closeModal(); 
+        const modal = document.getElementById('itemModal');
+        if (e.target == modal) closeModal(); 
     }
 </script>
 

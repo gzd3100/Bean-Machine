@@ -29,84 +29,92 @@
             padding: 0 5%; z-index: 1000; border-bottom: 1px solid var(--glass-border);
         }
         .nav-left { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .logo-nav { height: 50px; width: auto; }
+        .logo-nav { height: 55px; width: auto; object-fit: contain; }
         .nav-left h1 { font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 1.2rem; letter-spacing: 1px; }
         .nav-links { display: flex; gap: 20px; list-style: none; }
         .nav-links a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: var(--transition); }
         .nav-links a:hover, .nav-links a.active-link { color: var(--accent); }
 
         /* STRUCTURE DES PAGES */
-        .tab-content { display: none; min-height: 100vh; background: var(--bg-gradient); padding: 120px 20px 60px; }
+        .tab-content { 
+            display: none; 
+            min-height: 100vh; 
+            background: var(--bg-gradient); 
+            padding: 120px 20px 60px; 
+        }
 
-        /* CENTRAGE ABSOLU */
+        /* CENTRAGE POUR FORMULES, EQUIPE, CONTACT */
         #formules, #equipe, #contact {
-            display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .container { width: 100%; max-width: 1200px; margin: 0 auto; }
 
         .section-title { 
-            font-family: 'Oswald', sans-serif; font-size: 4rem; color: var(--accent); 
-            margin-bottom: 50px; text-transform: uppercase; 
+            font-family: 'Oswald', sans-serif; 
+            font-size: 4.5rem; 
+            color: var(--accent); 
+            margin-bottom: 50px; 
+            text-transform: uppercase; 
         }
 
-        .sub-category { 
-            font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: #fff; 
-            border-left: 4px solid var(--accent); padding-left: 15px; margin: 45px 0 25px; text-align: left; 
-        }
+        .sub-category { font-family: 'Oswald', sans-serif; font-size: 2rem; color: #fff; border-left: 4px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-align: left; }
 
         /* GRID & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; }
         .card { 
-            background: var(--glass); padding: 50px 20px; border-radius: 15px; border: 1px solid var(--glass-border);
+            background: var(--glass); padding: 60px 25px; border-radius: 15px; border: 1px solid var(--glass-border);
             text-align: center; cursor: pointer; transition: var(--transition); backdrop-filter: blur(5px);
         }
-        .card:hover { transform: translateY(-5px); background: rgba(176, 141, 87, 0.1); border-color: var(--accent); }
-        .card h3 { font-family: 'Oswald', sans-serif; font-size: 2rem; margin-bottom: 10px; }
-        .price-tag { color: var(--accent); font-weight: bold; font-size: 1.5rem; }
+        .card:hover { transform: translateY(-8px); background: rgba(176, 141, 87, 0.1); border-color: var(--accent); }
+        .card h3 { font-family: 'Oswald', sans-serif; font-size: 2.2rem; margin-bottom: 10px; }
+        .price-tag { color: var(--accent); font-weight: bold; font-size: 1.6rem; }
 
         /* MODALE */
         .modal {
             display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); align-items: center; justify-content: center; backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.96); align-items: center; justify-content: center; backdrop-filter: blur(12px);
         }
         .modal-content { 
-            background: #111; padding: 40px; border-radius: 20px; max-width: 550px; width: 90%; 
+            background: #0f0f0f; padding: 45px; border-radius: 25px; max-width: 600px; width: 90%; 
             position: relative; border: 1px solid var(--accent); text-align: center;
         }
-        .close { position: absolute; top: 20px; right: 25px; font-size: 35px; cursor: pointer; color: var(--accent); }
-        .modal-img { width: 100%; max-height: 280px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--glass-border); }
-        
-        .recipe-box { text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid var(--accent); }
-        .badge-fresh { background: var(--success); color: white; padding: 12px; border-radius: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .close { position: absolute; top: 20px; right: 25px; font-size: 40px; cursor: pointer; color: var(--accent); }
+        .modal-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--glass-border); }
+        .modal-recipe-box { text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--accent); }
+        .badge-fresh { background: var(--success); color: white; padding: 14px; border-radius: 8px; font-weight: bold; margin-top: 25px; display: inline-block; width: 100%; letter-spacing: 1px; }
 
-        /* TEAM */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; }
+        /* EQUIPE */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%; }
         .team-card { 
             display: flex; align-items: center; gap: 25px; background: var(--glass); 
-            padding: 35px; border-radius: 15px; border: 1px solid var(--glass-border); text-align: left;
+            padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border); text-align: left;
         }
-        .team-img { width: 80px; height: 80px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-family: 'Oswald'; color: var(--accent); }
+        .team-img { width: 90px; height: 90px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-family: 'Oswald'; color: var(--accent); border: 2px solid var(--accent); }
+        .team-card h3 { font-family: 'Oswald', sans-serif; font-size: 2rem; }
 
-        /* CONTACT CENTRAGE */
-        .contact-box { background: var(--glass); padding: 80px 40px; border-radius: 20px; border: 1px solid var(--glass-border); width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        /* CONTACT */
+        .contact-box { background: var(--glass); padding: 80px 40px; border-radius: 25px; border: 1px solid var(--glass-border); width: 100%; max-width: 850px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-        /* HERO ACCUEIL */
-        #accueil { display: flex; padding: 0; align-items: center; justify-content: center; }
+        /* ACCUEIL */
         .hero {
             height: 100vh; width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-        .hero-logo { width: 250px; margin-bottom: 20px; animation: float 5s ease-in-out infinite; }
-        .hero h2 { font-family: 'Oswald', sans-serif; font-size: 5rem; color: var(--accent); margin-bottom: 10px; }
-        .btn-hero { margin-top: 30px; padding: 18px 50px; background: var(--accent); border: none; color: #fff; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 5px; font-family: 'Oswald', sans-serif; font-size: 1.2rem; transition: var(--transition); }
+        .hero img { width: 280px; margin-bottom: 20px; animation: float 5s ease-in-out infinite; }
+        .hero h2 { font-family: 'Oswald', sans-serif; font-size: 5rem; color: var(--accent); margin: 10px 0; letter-spacing: 2px; }
+        .btn-hero { margin-top: 40px; padding: 20px 50px; background: var(--accent); border: none; color: #fff; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 5px; font-family: 'Oswald', sans-serif; font-size: 1.2rem; transition: var(--transition); }
         .btn-hero:hover { background: #8a6d43; transform: scale(1.05); }
 
         .active { display: flex !important; animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
     </style>
 </head>
 <body>
@@ -125,11 +133,11 @@
     </ul>
 </nav>
 
-<div id="accueil" class="tab-content active">
+<div id="accueil" class="tab-content active" style="padding:0;">
     <section class="hero">
-        <img src="logo.webp" alt="Bean Machine Logo" class="hero-logo">
+        <img src="logo.webp" alt="Logo">
         <h2>BEAN MACHINE</h2>
-        <p style="font-size: 1.5rem; letter-spacing: 2px;">L'excellence du café à Los Santos</p>
+        <p style="font-size: 1.5rem; letter-spacing: 3px; font-weight: 300;">L'excellence du café à Los Santos</p>
         <button class="btn-hero" onclick="showTab('formules')">Découvrir le menu</button>
     </section>
 </div>
@@ -138,13 +146,13 @@
     <div class="container">
         <h2 class="section-title">Nos Formules</h2>
         <div class="grid">
-            <div class="card" onclick="openModal('Menu Gourmand', '55$', 'L\'expérience ultime Bean Machine pour satisfaire toutes vos envies gourmandes.', 'image_31c5ea.png', 'Comprend un plat de résistance au choix, accompagné d\'une boisson fraîche artisanale et d\'une douceur sucrée en dessert.')">
+            <div class="card" onclick="openModal('Menu Gourmand', '55$', 'L\'expérience ultime Bean Machine pour satisfaire les plus grandes faims.', 'image_31c5ea.png', 'Une sélection rigoureuse comprenant un plat chaud au choix, une boisson fraîche artisanale et une douceur sucrée pour finir en beauté.')">
                 <h3>Menu Gourmand</h3><p class="price-tag">55$</p>
             </div>
-            <div class="card" onclick="openModal('Menu Classique', '40$', 'Un équilibre parfait pour une pause déjeuner réussie et savoureuse.', 'image_31c5ea.png', 'L\'association d\'un plat généreux au choix et d\'une boisson fraîche pour vous désaltérer.')">
+            <div class="card" onclick="openModal('Menu Classique', '40$', 'L\'équilibre parfait pour votre pause déjeuner quotidienne.', 'image_31c5ea.png', 'L\'alliance d\'un plat de notre carte au choix accompagné d\'une boisson fraîche pour une dégustation complète.')">
                 <h3>Menu Classique</h3><p class="price-tag">40$</p>
             </div>
-            <div class="card" onclick="openModal('Menu Start', '35$', 'La combinaison idéale pour un réveil dynamique ou un goûter réconfortant.', 'image_31c552.jpg', 'Un dessert au choix marié à l\'une de nos boissons chaudes signatures.')">
+            <div class="card" onclick="openModal('Menu Start', '35$', 'La combinaison idéale pour bien commencer la journée ou pour un goûter réconfortant.', 'image_31c552.jpg', 'Un dessert gourmand au choix marié à la chaleur d\'une de nos boissons chaudes signatures.')">
                 <h3>Menu Start</h3><p class="price-tag">35$</p>
             </div>
         </div>
@@ -154,33 +162,27 @@
 <div id="carte" class="tab-content">
     <div class="container">
         <h2 class="section-title">La Carte</h2>
-        
+
         <h3 class="sub-category">Nourritures — 30$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Un plat mijoté pendant de longues heures pour une tendreté exceptionnelle.', 'image_31c5ea.png', 'Une base de boeuf sélectionné, mariée à des carottes fondantes et des oignons, le tout relevé par une sauce tomate onctueuse et une pointe de sel.')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
-            <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Un velouté de saison, sain et riche en saveurs potagères.', 'image_31c5ea.png', 'Un mélange harmonieux de carottes, oignons, haricots verts, patates et aubergines fraîches, délicatement assaisonné.')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
-            <div class="card" onclick="openModal('Soupe de tomate', '30$', 'Un classique indémodable, doux et réconfortant.', 'image_31c5ea.png', 'Des tomates mûries au soleil mixées avec des oignons revenus et une juste dose de sel.')"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Un plat généreux et mijoté lentement pour une viande fondante.', 'image_31c5ea.png', 'Préparé avec des morceaux de boeuf tendres, une sauce tomate onctueuse, des carottes croquantes et des oignons caramélisés, le tout relevé d\'une pointe de sel.')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Un cocktail de vitamines frais et léger pour un repas sain.', 'image_31c5ea.png', 'Un velouté onctueux composé de carottes, oignons, haricots verts, pommes de terre et aubergines, délicatement assaisonné au sel marin.')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de tomate', '30$', 'Un classique réconfortant aux saveurs ensoleillées.', 'image_31c5ea.png', 'Des tomates mûries à point mixées avec des oignons doux et une pincée de sel pour une onctuosité parfaite.')"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons fraîches — 15$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Smoothie fraise', '15$', 'Une boisson onctueuse et intensément fruitée.', 'image_31c552.jpg', 'Des fraises fraîches mixées avec une touche de sucre pour la douceur.')"><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Smoothie banane', '15$', 'Un smoothie riche et énergétique.', 'image_31c552.jpg', 'Des bananes de qualité supérieure mixées avec un voile de sucre.')"><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Jus d’orange', '15$', 'Le plein de vitamine C dès le matin.', 'image_31c172.jpg', 'Des oranges sélectionnées, pressées à la main minute.')"><h3>Jus d’orange</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Jus d’ananas', '15$', 'Une évasion tropicale acidulée.', 'image_31c172.jpg', 'Ananas frais pressé pour extraire tout le nectar exotique.')"><h3>Jus d’ananas</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie fraise', '15$', 'Une douceur fruitée et rafraîchissante.', 'image_31c552.jpg', 'Fraises fraîches mixées avec une touche de sucre pour un plaisir intense.')"><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie banane', '15$', 'Onctuosité et énergie dans un seul verre.', 'image_31c552.jpg', 'Bananes mûres sélectionnées et sucre fin mixés pour une texture veloutée.')"><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Jus d’orange', '15$', 'Le classique indispensable pressé minute.', 'image_31c172.jpg', 'Oranges entières pressées pour conserver toute la pulpe et les vitamines.')"><h3>Jus d’orange</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Jus d’ananas', '15$', 'Une touche tropicale acidulée.', 'image_31c172.jpg', 'Nectar d\'ananas frais extrait pour une fraîcheur exotique immédiate.')"><h3>Jus d’ananas</h3><p class="price-tag">15$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons chaudes — 20$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Chocolat chaud', '20$', 'Une boisson gourmande pour les amateurs de cacao.', 'image_31c172.jpg', 'Un chocolat fondu onctueux mélangé à une touche de sucre.')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Expresso', '20$', 'La force et l\'arôme du café Bean Machine.', 'image_31c172.jpg', 'Graines de café torréfiées et extraites sous pression, servies avec ou sans sucre.')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Thé Matcha', '20$', 'Une boisson ancestrale aux vertus apaisantes.', 'image_31c172.jpg', 'Poudre de thé vert matcha de haute qualité fouettée traditionnellement.')"><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
-        </div>
-
-        <h3 class="sub-category">Desserts — 15$</h3>
-        <div class="grid">
-            <div class="card" onclick="openModal('Donut chocolat', '15$', 'Un beignet moelleux au glaçage intense.', 'image_31c552.jpg', 'Pâte à donut artisanale aux oeufs et sucre, nappée de chocolat noir.')"><h3>Donut chocolat</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Cheesecake', '15$', 'Un dessert fondant d\'inspiration new-yorkaise.', 'image_31c552.jpg', 'Crème de fromage onctueuse sur un biscuit craquant au beurre.')"><h3>Cheesecake</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Chocolat chaud', '20$', 'Réconfort et gourmandise chocolatée.', 'image_31c172.jpg', 'Cacao de qualité supérieure mélangé à une pointe de sucre pour un arôme puissant.')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Expresso', '20$', 'L\'essence même du café pour un réveil intense.', 'image_31c172.jpg', 'Graines de café Arabica torréfiées et extraites avec précision.')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Thé Matcha', '20$', 'Une boisson zen aux multiples vertus.', 'image_31c172.jpg', 'Poudre de thé vert matcha de cérémonie fouettée à la main.')"><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
         </div>
     </div>
 </div>
@@ -201,10 +203,10 @@
     <div class="container" style="display:flex; justify-content:center;">
         <div class="contact-box">
             <h2 class="section-title">Contact</h2>
-            <p style="font-size: 2rem; margin-bottom: 30px; font-weight: 300;">📍 Place des cubes (À côté de la fourrière)</p>
-            <div style="background: rgba(176,141,87,0.1); padding: 30px; border-radius: 15px; border: 1px solid var(--accent);">
-                <p style="font-size: 1.8rem; color: var(--accent); margin-bottom: 15px;">📞 Hina : 5568921</p>
-                <p style="font-size: 1.8rem; color: var(--accent);">📞 Daichi : 5562082</p>
+            <p style="font-size: 2.2rem; margin-bottom: 35px; font-weight: 300;">📍 Place des cubes (À côté de la fourrière)</p>
+            <div style="background: rgba(176,141,87,0.15); padding: 40px; border-radius: 20px; border: 1px solid var(--accent); width: 100%;">
+                <p style="font-size: 2rem; color: var(--accent); margin-bottom: 20px;">📞 Hina : 5568921</p>
+                <p style="font-size: 2rem; color: var(--accent);">📞 Daichi : 5562082</p>
             </div>
         </div>
     </div>
@@ -213,17 +215,17 @@
 <div id="itemModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="font-family: 'Oswald'; color: var(--accent); font-size: 2.8rem; margin-bottom: 10px;"></h2>
+        <h2 id="modalTitle" style="font-family: 'Oswald'; color: var(--accent); font-size: 3rem; margin-bottom: 15px;"></h2>
         <img id="modalImg" src="" class="modal-img">
-        <p id="modalPrice" style="font-weight: bold; font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></p>
-        <p id="modalDesc" style="font-size: 1.1rem; line-height: 1.6; color: #ddd;"></p>
+        <p id="modalPrice" style="font-weight: bold; font-size: 2.2rem; color: #fff; margin-bottom: 15px;"></p>
+        <p id="modalDesc" style="font-size: 1.2rem; line-height: 1.6; color: #ccc; margin-bottom: 20px;"></p>
         
-        <div class="recipe-box">
-            <strong style="color: var(--accent); text-transform: uppercase;">Note du Chef & Recette :</strong><br>
-            <p id="modalRecipe" style="margin-top: 10px; font-style: italic;"></p>
+        <div class="modal-recipe-box">
+            <strong style="color: var(--accent); text-transform: uppercase; letter-spacing: 1px;">Secret de fabrication :</strong>
+            <p id="modalRecipe" style="margin-top: 12px; font-style: italic; line-height: 1.5;"></p>
         </div>
 
-        <div class="badge-fresh">✓ 100% Produits frais • 100% Maison</div>
+        <div class="badge-fresh">100% PRODUITS FRAIS - 100% FAIT MAISON</div>
     </div>
 </div>
 
@@ -235,15 +237,14 @@
         });
         const target = document.getElementById(id);
         
-        if(id === 'formules' || id === 'equipe' || id === 'contact') {
-            target.style.display = 'flex';
-        } else if(id === 'accueil') {
+        // Gestion de l'affichage flex pour le centrage
+        if(id === 'formules' || id === 'equipe' || id === 'contact' || id === 'accueil') {
             target.style.display = 'flex';
         } else {
             target.style.display = 'block';
         }
         
-        setTimeout(() => target.classList.add('active'), 10);
+        setTimeout(() => target.classList.add('active'), 20);
         
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
         const link = document.getElementById('l-' + id);

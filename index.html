@@ -44,7 +44,7 @@
         }
 
         /* CENTRAGE POUR FORMULES, EQUIPE, CONTACT */
-        #formules, #equipe, #contact {
+        #formules, #equipe, #contact, #accueil {
             display: none;
             flex-direction: column;
             justify-content: center;
@@ -146,20 +146,20 @@
     <div class="container">
         <h2 class="section-title">Nos Formules</h2>
         <div class="grid">
-            <div class="card" onclick="openModal('Menu Gourmand', '55$', 'L\'expérience complète Bean Machine.', 'image_31c5ea.png', 'Ce menu contient : \n- Un plat au choix \n- Une boisson fraîche \n- Un dessert OU une Boisson chaude')">
-    <h3>Menu Gourmand</h3>
-    <p class="price-tag">55$</p>
-</div>
+            <div class="card" onclick="openModal('Menu Gourmand', '55$', 'L\'expérience complète Bean Machine.', 'image_31c5ea.png', 'Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche\n- Un dessert OU une boisson chaude')">
+                <h3>Menu Gourmand</h3>
+                <p class="price-tag">55$</p>
+            </div>
 
-<div class="card" onclick="openModal('Menu Classique', '40$', 'L\'essentiel pour un bon repas.', 'image_3226eb.png', 'Ce menu contient : \n- Un plat au choix \n- Une boisson fraîche')">
-    <h3>Menu Classique</h3>
-    <p class="price-tag">40$</p>
-</div>
+            <div class="card" onclick="openModal('Menu Classique', '40$', 'L\'essentiel pour un bon repas.', 'image_3226eb.png', 'Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche')">
+                <h3>Menu Classique</h3>
+                <p class="price-tag">40$</p>
+            </div>
 
-<div class="card" onclick="openModal('Menu Start', '35$', 'Pour un réveil ou un goûter réussi.', 'image_31c552.jpg', 'Ce menu contient : \n- Un dessert \n- Une boisson chaude')">
-    <h3>Menu Start</h3>
-    <p class="price-tag">35$</p>
-</div>
+            <div class="card" onclick="openModal('Menu Start', '35$', 'Pour un réveil ou un goûter réussi.', 'image_31c552.jpg', 'Ce menu contient :\n- Un dessert\n- Une boisson chaude')">
+                <h3>Menu Start</h3>
+                <p class="price-tag">35$</p>
+            </div>
         </div>
     </div>
 </div>
@@ -170,24 +170,24 @@
 
         <h3 class="sub-category">Nourritures — 30$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Un plat généreux et mijoté lentement pour une viande fondante.', 'image_31c5ea.png', 'Préparé avec des morceaux de boeuf tendres, une sauce tomate onctueuse, des carottes croquantes et des oignons caramélisés, le tout relevé d\'une pointe de sel.')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
-            <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Un cocktail de vitamines frais et léger pour un repas sain.', 'image_31c5ea.png', 'Un velouté onctueux composé de carottes, oignons, haricots verts, pommes de terre et aubergines, délicatement assaisonné au sel marin.')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
-            <div class="card" onclick="openModal('Soupe de tomate', '30$', 'Un classique réconfortant aux saveurs ensoleillées.', 'image_31c5ea.png', 'Des tomates mûries à point mixées avec des oignons doux et une pincée de sel pour une onctuosité parfaite.')"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Un plat généreux et mijoté lentement pour une viande fondante.', 'image_31c5ea.png', 'Ingrédients : Boeuf, Tomate, Carotte, Oignon, Sel.')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Un cocktail de vitamines frais et léger pour un repas sain.', 'image_31c5ea.png', 'Ingrédients : Carotte, Oignon, Haricots, Pomme de terre, Aubergine.')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de tomate', '30$', 'Un classique réconfortant aux saveurs ensoleillées.', 'image_31c5ea.png', 'Ingrédients : Tomate, Oignon, Sel.')"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons fraîches — 15$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Smoothie fraise', '15$', 'Une douceur fruitée et rafraîchissante.', 'image_31c552.jpg', 'Fraises fraîches mixées avec une touche de sucre pour un plaisir intense.')"><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Smoothie banane', '15$', 'Onctuosité et énergie dans un seul verre.', 'image_31c552.jpg', 'Bananes mûres sélectionnées et sucre fin mixés pour une texture veloutée.')"><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Jus d’orange', '15$', 'Le classique indispensable pressé minute.', 'image_31c172.jpg', 'Oranges entières pressées pour conserver toute la pulpe et les vitamines.')"><h3>Jus d’orange</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Jus d’ananas', '15$', 'Une touche tropicale acidulée.', 'image_31c172.jpg', 'Nectar d\'ananas frais extrait pour une fraîcheur exotique immédiate.')"><h3>Jus d’ananas</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie fraise', '15$', 'Une douceur fruitée et rafraîchissante.', 'image_31c552.jpg', 'Ingrédients : Fraise, Sucre, Verre.')"><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie banane', '15$', 'Onctuosité et énergie dans un seul verre.', 'image_31c552.jpg', 'Ingrédients : Banane, Sucre, Verre.')"><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Jus d’orange', '15$', 'Le classique indispensable pressé minute.', 'image_31c172.jpg', 'Ingrédients : Orange, Verre.')"><h3>Jus d’orange</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Jus d’ananas', '15$', 'Une touche tropicale acidulée.', 'image_31c172.jpg', 'Ingrédients : Ananas, Verre.')"><h3>Jus d’ananas</h3><p class="price-tag">15$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons chaudes — 20$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Chocolat chaud', '20$', 'Réconfort et gourmandise chocolatée.', 'image_31c172.jpg', 'Cacao de qualité supérieure mélangé à une pointe de sucre pour un arôme puissant.')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Expresso', '20$', 'L\'essence même du café pour un réveil intense.', 'image_31c172.jpg', 'Graines de café Arabica torréfiées et extraites avec précision.')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Thé Matcha', '20$', 'Une boisson zen aux multiples vertus.', 'image_31c172.jpg', 'Poudre de thé vert matcha de cérémonie fouettée à la main.')"><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Chocolat chaud', '20$', 'Réconfort et gourmandise chocolatée.', 'image_31c172.jpg', 'Ingrédients : Cacao, Sucre, Tasse.')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Expresso', '20$', 'L\'essence même du café pour un réveil intense.', 'image_31c172.jpg', 'Ingrédients : Café, Eau, Tasse.')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Thé Matcha', '20$', 'Une boisson zen aux multiples vertus.', 'image_31c172.jpg', 'Ingrédients : Matcha, Eau, Tasse.')"><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
         </div>
     </div>
 </div>
@@ -226,8 +226,7 @@
         <p id="modalDesc" style="font-size: 1.2rem; line-height: 1.6; color: #ccc; margin-bottom: 20px;"></p>
         
         <div class="modal-recipe-box">
-            <strong style="color: var(--accent); text-transform: uppercase; letter-spacing: 1px;">Secret de fabrication :</strong>
-            <p id="modalRecipe" style="margin-top: 12px; font-style: italic; line-height: 1.5;"></p>
+            <p id="modalRecipe" style="margin-top: 5px; font-weight: 500; line-height: 1.6;"></p>
         </div>
 
         <div class="badge-fresh">100% PRODUITS FRAIS - 100% FAIT MAISON</div>
@@ -242,7 +241,6 @@
         });
         const target = document.getElementById(id);
         
-        // Gestion de l'affichage flex pour le centrage
         if(id === 'formules' || id === 'equipe' || id === 'contact' || id === 'accueil') {
             target.style.display = 'flex';
         } else {
@@ -258,20 +256,21 @@
     }
 
     function openModal(title, price, desc, img, recipe) {
-    document.getElementById('modalTitle').innerText = title;
-    document.getElementById('modalPrice').innerText = price;
-    document.getElementById('modalDesc').innerText = desc;
-    document.getElementById('modalImg').src = img;
-    
-    // Cette ligne transforme les sauts de ligne en vrais retours à la ligne HTML
-    document.getElementById('modalRecipe').innerHTML = recipe.replace(/\n/g, '<br>');
-    
-    document.getElementById('itemModal').style.display = 'flex';
-}
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('modalDesc').innerText = desc;
+        document.getElementById('modalImg').src = img;
+        document.getElementById('modalRecipe').innerHTML = recipe.replace(/\n/g, '<br>');
+        document.getElementById('itemModal').style.display = 'flex';
     }
 
-    function closeModal() { document.getElementById('itemModal').style.display = 'none'; }
-    window.onclick = function(e) { if (e.target == document.getElementById('itemModal')) closeModal(); }
+    function closeModal() { 
+        document.getElementById('itemModal').style.display = 'none'; 
+    }
+
+    window.onclick = function(e) { 
+        if (e.target == document.getElementById('itemModal')) closeModal(); 
+    }
 </script>
 
 </body>

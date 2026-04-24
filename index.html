@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Machine | Site Officiel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="[https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap](https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap)" rel="stylesheet">
     
-    ```html
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=800&auto=format&fm=webp">
+    <link rel="preload" as="image" href="logo.webp">
+    <link rel="preload" as="image" href="[https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=800&auto=format&fm=webp](https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=800&auto=format&fm=webp)">
 
     <style>
         :root {
@@ -44,7 +44,7 @@
         /* HERO */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('[https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp](https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp)');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
@@ -101,7 +101,7 @@
 
 <nav>
     <div class="nav-left">
-        <img src="logo.webp" alt="BN" class="logo-nav">
+        <img src="logo.webp" alt="Logo" class="logo-nav">
         <h1>BEAN MACHINE</h1>
     </div>
     <ul class="nav-links">
@@ -115,7 +115,7 @@
 
 <div id="accueil" class="tab-content active">
     <section class="hero">
-        <img src="logo.webp" alt="Bean Machine">
+        <img src="logo.webp" alt="Bean Machine Logo Main">
         <h2>BEAN MACHINE</h2>
         <p>L'excellence du café à Los Santos</p>
         <button class="btn-hero" onclick="showTab('formules')">Découvrir le menu</button>
@@ -125,13 +125,13 @@
 <div id="formules" class="container tab-content">
     <h2 class="section-title">Nos Formules</h2>
     <div class="grid">
-        <div class="card" onclick="openModal('Menu Gourmand', '55$', '1 nourriture, 1 boisson fraîche et 1 dessert au choix.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp')">
+        <div class="card" onclick="openModal('Menu Gourmand', '55$', '1 nourriture, 1 boisson fraîche et 1 dessert au choix.', '[https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp](https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp)')">
             <h3>Menu Gourmand</h3><p class="price-tag">55$</p>
         </div>
-        <div class="card" onclick="openModal('Menu Classique', '40$', '1 nourriture et 1 boisson fraîche au choix.', 'https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=60&w=600&auto=format&fm=webp')">
+        <div class="card" onclick="openModal('Menu Classique', '40$', '1 nourriture et 1 boisson fraîche au choix.', '[https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=60&w=600&auto=format&fm=webp](https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=60&w=600&auto=format&fm=webp)')">
             <h3>Menu Classique</h3><p class="price-tag">40$</p>
         </div>
-        <div class="card" onclick="openModal('Menu Start', '35$', '1 dessert et 1 boisson chaude au choix.', 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=600&auto=format&fm=webp')">
+        <div class="card" onclick="openModal('Menu Start', '35$', '1 dessert et 1 boisson chaude au choix.', '[https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=600&auto=format&fm=webp](https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=600&auto=format&fm=webp)')">
             <h3>Menu Start</h3><p class="price-tag">35$</p>
         </div>
     </div>
@@ -139,19 +139,17 @@
 
 <div id="carte" class="container tab-content">
     <h2 class="section-title">La Carte</h2>
-
     <h3 class="sub-category">Nourritures (30$)</h3>
     <div class="grid">
-        <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Tendre boeuf mijoté.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
-        <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Légumes de saison.', 'https://images.unsplash.com/photo-1547592116-c0c294155106?q=60&w=600&auto=format&fm=webp')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
+        <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Tendre boeuf mijoté.', '[https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp](https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp)')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
+        <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Légumes de saison.', '[https://images.unsplash.com/photo-1547592116-c0c294155106?q=60&w=600&auto=format&fm=webp](https://images.unsplash.com/photo-1547592116-c0c294155106?q=60&w=600&auto=format&fm=webp)')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
     </div>
-
     <h3 class="sub-category">Boissons Chaudes (20$)</h3>
     <div class="grid">
-        <div class="card" onclick="openModal('Expresso', '20$', 'Torréfaction intense.', 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=60&w=600&auto=format&fm=webp')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
-        <div class="card" onclick="openModal('Chocolat Chaud', '20$', 'Onctueux et sucré.', 'https://images.unsplash.com/photo-1544787210-2827443cb69e?q=60&w=600&auto=format&fm=webp')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
+        <div class="card" onclick="openModal('Expresso', '20$', 'Torréfaction intense.', '[https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=60&w=600&auto=format&fm=webp](https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=60&w=600&auto=format&fm=webp)')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
+        <div class="card" onclick="openModal('Chocolat Chaud', '20$', 'Onctueux et sucré.', '[https://images.unsplash.com/photo-1544787210-2827443cb69e?q=60&w=600&auto=format&fm=webp](https://images.unsplash.com/photo-1544787210-2827443cb69e?q=60&w=600&auto=format&fm=webp)')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
     </div>
-    </div>
+</div>
 
 <div id="equipe" class="container tab-content">
     <h2 class="section-title">L'Équipe</h2>
@@ -192,7 +190,7 @@
 
     function openModal(title, price, desc, img) {
         const modalImg = document.getElementById('modalImg');
-        modalImg.src = img; // L'image chargera plus vite car déjà pré-chargée par le navigateur
+        modalImg.src = img;
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('modalPrice').innerText = price;
         document.getElementById('modalDesc').innerText = desc;

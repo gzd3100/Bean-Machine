@@ -5,100 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Machine | Site Officiel</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="preload" as="image" href="logo.png">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=800&auto=format&fm=webp">
+
     <style>
         :root {
             --primary: #4e342a; 
             --accent: #b08d57;
             --dark: #0a0a0a;
             --glass: rgba(255, 255, 255, 0.05);
-            --transition: all 0.3s ease;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
+        /* Fluidité globale */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* NAVIGATION */
+        /* NAV */
         nav {
-            position: fixed; top: 0; width: 100%; height: 90px;
-            background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; height: 80px;
+            background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px);
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; z-index: 1000; border-bottom: 2px solid var(--primary);
+            padding: 0 5%; z-index: 1000; border-bottom: 1px solid var(--primary);
         }
-        .nav-left { display: flex; align-items: center; gap: 15px; }
-        .logo-nav { height: 60px; width: auto; border-radius: 50%; }
-        .nav-left h1 { font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 1.4rem; letter-spacing: 1px; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .logo-nav { height: 50px; width: auto; transition: transform 0.3s ease; }
+        .logo-nav:hover { transform: rotate(10deg); }
+        .nav-left h1 { font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 1.2rem; letter-spacing: 1px; }
 
-        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
         .nav-links a { 
-            text-decoration: none; color: #fff; font-size: 0.85rem; 
+            text-decoration: none; color: rgba(255,255,255,0.7); font-size: 0.8rem; 
             text-transform: uppercase; font-weight: 600; cursor: pointer; transition: var(--transition);
         }
         .nav-links a:hover, .nav-links a.active-link { color: var(--accent); }
 
-        /* HERO SECTION */
+        /* HERO */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=2000');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-        .hero img { width: 280px; margin-bottom: 20px; animation: float 6s ease-in-out infinite; }
-        .hero h2 { font-family: 'Oswald', sans-serif; font-size: 4.5rem; color: var(--accent); margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; opacity: 0.8; margin-bottom: 30px; }
+        .hero img { width: 220px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); animation: float 5s ease-in-out infinite; }
+        .hero h2 { font-family: 'Oswald', sans-serif; font-size: 4rem; color: var(--accent); margin: 10px 0; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn-hero { 
-            padding: 15px 45px; background: var(--accent); border: none; color: #fff; 
-            font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 5px; 
-            transition: var(--transition); font-family: 'Oswald', sans-serif; letter-spacing: 1px;
+            padding: 14px 35px; background: var(--accent); border: none; color: #fff; 
+            font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 4px; 
+            transition: var(--transition); font-family: 'Oswald', sans-serif;
         }
-        .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(176, 141, 87, 0.3); }
+        .btn-hero:hover { background: #967546; transform: translateY(-2px); }
 
-        /* CONTENU */
-        .container { max-width: 1200px; margin: 120px auto 60px; padding: 20px; }
-        .tab-content { display: none; animation: fadeIn 0.6s ease forwards; }
+        /* GRID & CARDS */
+        .container { max-width: 1100px; margin: 100px auto 50px; padding: 20px; }
+        .tab-content { display: none; animation: fadeIn 0.4s ease-out forwards; }
         .active { display: block; }
 
-        .section-title { text-align: center; font-family: 'Oswald', sans-serif; font-size: 3rem; color: var(--accent); margin-bottom: 50px; text-transform: uppercase; }
-        .sub-category { font-family: 'Oswald', sans-serif; font-size: 1.8rem; border-left: 4px solid var(--accent); padding-left: 15px; margin: 40px 0 20px; color: #eee; }
+        .section-title { text-align: center; font-family: 'Oswald', sans-serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 40px; }
+        .sub-category { font-family: 'Oswald', sans-serif; font-size: 1.6rem; border-left: 3px solid var(--accent); padding-left: 12px; margin: 35px 0 20px; }
 
-        /* GRIDS & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .card { 
-            background: var(--glass); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
-            text-align: center; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden;
+            background: var(--glass); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);
+            text-align: center; cursor: pointer; transition: var(--transition);
         }
-        .card:hover { border-color: var(--accent); background: rgba(176, 141, 87, 0.1); transform: translateY(-5px); }
-        .card h3 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 10px; }
-        .price-tag { color: var(--accent); font-weight: bold; font-size: 1.3rem; }
+        .card:hover { border-color: var(--accent); background: rgba(176, 141, 87, 0.08); }
+        .card h3 { font-family: 'Oswald', sans-serif; font-size: 1.3rem; margin-bottom: 8px; }
+        .price-tag { color: var(--accent); font-weight: bold; font-size: 1.2rem; }
 
-        /* MODALE */
+        /* MODALE RAPIDE */
         .modal {
             display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); align-items: center; justify-content: center; backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.92); align-items: center; justify-content: center; backdrop-filter: blur(5px);
         }
         .modal-content { 
-            background: #151515; padding: 40px; border-radius: 20px; max-width: 500px; width: 95%; 
-            position: relative; border: 2px solid var(--accent); text-align: center;
+            background: #121212; padding: 30px; border-radius: 15px; max-width: 450px; width: 90%; 
+            position: relative; border: 1px solid var(--accent); text-align: center;
         }
-        .close { position: absolute; top: 20px; right: 20px; font-size: 35px; cursor: pointer; color: var(--accent); }
-        .badge-maison { background: #1b4d31; color: #7cfc00; padding: 6px 15px; border-radius: 20px; font-size: 0.75rem; margin-top: 15px; display: inline-block; font-weight: bold; border: 1px solid #7cfc00; }
+        .close { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: var(--accent); }
+        .badge-maison { background: #1b4d31; color: #7cfc00; padding: 5px 12px; border-radius: 15px; font-size: 0.7rem; margin-top: 15px; display: inline-block; font-weight: bold; }
 
-        /* EQUIPE */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
-        .team-card { display: flex; align-items: center; gap: 25px; background: var(--glass); padding: 25px; border-radius: 15px; border-left: 5px solid var(--accent); }
-        .team-img { width: 70px; height: 70px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; color: #fff; font-family: 'Oswald'; }
-        .team-info h3 { font-family: 'Oswald'; font-size: 1.4rem; }
+        /* EQUIPE & CONTACT */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .team-card { display: flex; align-items: center; gap: 20px; background: var(--glass); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); }
+        .team-img { width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Oswald'; color: var(--accent); }
 
-        /* CONTACT */
-        .contact-box { background: linear-gradient(145deg, #1a1a1a, #0a0a0a); padding: 50px; border-radius: 25px; text-align: center; border: 1px solid var(--primary); }
-        .contact-box p { margin: 15px 0; font-size: 1.1rem; }
+        .contact-box { background: #151515; padding: 40px; border-radius: 15px; text-align: center; border: 1px solid var(--primary); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* On cache la nav sur mobile pour plus de propreté ou prévoir un menu burger */
-            .hero h2 { font-size: 2.5rem; }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     </style>
 </head>
 <body>
@@ -109,7 +105,7 @@
         <h1>BEAN MACHINE</h1>
     </div>
     <ul class="nav-links">
-        <li><a onclick="showTab('accueil')" id="l-accueil">Accueil</a></li>
+        <li><a onclick="showTab('accueil')" id="l-accueil" class="active-link">Accueil</a></li>
         <li><a onclick="showTab('formules')" id="l-formules">Formules</a></li>
         <li><a onclick="showTab('carte')" id="l-carte">La Carte</a></li>
         <li><a onclick="showTab('equipe')" id="l-equipe">L'Équipe</a></li>
@@ -121,25 +117,22 @@
     <section class="hero">
         <img src="logo.png" alt="Bean Machine">
         <h2>BEAN MACHINE</h2>
-        <p>Site Officiel — Place des Cubes</p>
-        <button class="btn-hero" onclick="showTab('formules')">Voir les Formules</button>
+        <p>L'excellence du café à Los Santos</p>
+        <button class="btn-hero" onclick="showTab('formules')">Découvrir le menu</button>
     </section>
 </div>
 
 <div id="formules" class="container tab-content">
     <h2 class="section-title">Nos Formules</h2>
     <div class="grid">
-        <div class="card" onclick="openModal('Menu Gourmand', '55$', 'Comprend : 1 nourriture au choix, 1 boisson fraîche au choix et 1 dessert au choix.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd')">
-            <h3>Menu Gourmand</h3>
-            <p class="price-tag">55$</p>
+        <div class="card" onclick="openModal('Menu Gourmand', '55$', '1 nourriture, 1 boisson fraîche et 1 dessert au choix.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp')">
+            <h3>Menu Gourmand</h3><p class="price-tag">55$</p>
         </div>
-        <div class="card" onclick="openModal('Menu Classique', '40$', 'Comprend : 1 nourriture au choix et 1 boisson fraîche au choix.', 'https://images.unsplash.com/photo-1497515114629-f71d768fd07c')">
-            <h3>Menu Classique</h3>
-            <p class="price-tag">40$</p>
+        <div class="card" onclick="openModal('Menu Classique', '40$', '1 nourriture et 1 boisson fraîche au choix.', 'https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=60&w=600&auto=format&fm=webp')">
+            <h3>Menu Classique</h3><p class="price-tag">40$</p>
         </div>
-        <div class="card" onclick="openModal('Menu Start', '35$', 'Comprend : 1 dessert au choix et 1 boisson chaude au choix.', 'https://images.unsplash.com/photo-1442512595331-e89e73853f31')">
-            <h3>Menu Start</h3>
-            <p class="price-tag">35$</p>
+        <div class="card" onclick="openModal('Menu Start', '35$', '1 dessert et 1 boisson chaude au choix.', 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=60&w=600&auto=format&fm=webp')">
+            <h3>Menu Start</h3><p class="price-tag">35$</p>
         </div>
     </div>
 </div>
@@ -149,105 +142,65 @@
 
     <h3 class="sub-category">Nourritures (30$)</h3>
     <div class="grid">
-        <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Un ragoût tendre et généreux, mijoté aux herbes.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
-        <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Légumes frais du marché pour une soupe légère.', 'https://images.unsplash.com/photo-1547592116-c0c294155106')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
-        <div class="card" onclick="openModal('Soupe de tomate', '30$', 'Tomates cerises confites et basilic.', 'https://images.unsplash.com/photo-1594759074500-93043813e8b7')"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
-    </div>
-
-    <h3 class="sub-category">Boissons Fraîches (15$)</h3>
-    <div class="grid">
-        <div class="card" onclick="openModal('Smoothie Fraise', '15$', 'Frais et fruité.', 'https://images.unsplash.com/photo-1553530666-ba11a7da3888')"><h3>Smoothie fraise</h3></div>
-        <div class="card" onclick="openModal('Smoothie Banane', '15$', 'Texture onctueuse et gourmande.', 'https://images.unsplash.com/photo-1553530666-ba11a7da3888')"><h3>Smoothie banane</h3></div>
-        <div class="card" onclick="openModal('Jus d’orange', '15$', '100% pur jus pressé.', 'https://images.unsplash.com/photo-1613478223719-2ab802602423')"><h3>Jus d’orange</h3></div>
-        <div class="card" onclick="openModal('Jus d’ananas', '15$', 'Exotique et rafraîchissant.', 'https://images.unsplash.com/photo-1517088455889-bfa75135412c')"><h3>Jus d’ananas</h3></div>
+        <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Tendre boeuf mijoté.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=60&w=600&auto=format&fm=webp')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
+        <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Légumes de saison.', 'https://images.unsplash.com/photo-1547592116-c0c294155106?q=60&w=600&auto=format&fm=webp')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
     </div>
 
     <h3 class="sub-category">Boissons Chaudes (20$)</h3>
     <div class="grid">
-        <div class="card" onclick="openModal('Chocolat Chaud', '20$', 'Chocolat noir fondu et lait crémeux.', 'https://images.unsplash.com/photo-1544787210-2827443cb69e')"><h3>Chocolat chaud</h3></div>
-        <div class="card" onclick="openModal('Thé Vert', '20$', 'Infusion délicate et antioxydante.', 'https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5')"><h3>Thé vert</h3></div>
-        <div class="card" onclick="openModal('Expresso', '20$', 'L\'énergie pure du grain Bean Machine.', 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04')"><h3>Expresso</h3></div>
-        <div class="card" onclick="openModal('Cappuccino', '20$', 'Mousse onctueuse et saupoudré de cacao.', 'https://images.unsplash.com/photo-1534778101976-62847782c213')"><h3>Cappuccino</h3></div>
-        <div class="card" onclick="openModal('Thé Matcha', '20$', 'Tradition japonaise et bienfaits.', 'https://images.unsplash.com/photo-1515823662273-0b5071ad8417')"><h3>Thé matcha</h3></div>
-        <div class="card" onclick="openModal('Macchiato', '20$', 'Lait taché d\'expresso robuste.', 'https://images.unsplash.com/photo-1485808191679-5f86510681a2')"><h3>Macchiato</h3></div>
+        <div class="card" onclick="openModal('Expresso', '20$', 'Torréfaction intense.', 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=60&w=600&auto=format&fm=webp')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
+        <div class="card" onclick="openModal('Chocolat Chaud', '20$', 'Onctueux et sucré.', 'https://images.unsplash.com/photo-1544787210-2827443cb69e?q=60&w=600&auto=format&fm=webp')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
     </div>
-
-    <h3 class="sub-category">Desserts (15$)</h3>
-    <div class="grid">
-        <div class="card" onclick="openModal('Donut Chocolat', '15$', 'Glaçage gourmand au chocolat noir.', 'https://images.unsplash.com/photo-1551024601-bec78aea704b')"><h3>Donut chocolat</h3></div>
-        <div class="card" onclick="openModal('Donut Fraise', '15$', 'Rose, sucré et irrésistible.', 'https://images.unsplash.com/photo-1551024522-dcc5b172d045')"><h3>Donut fraise</h3></div>
-        <div class="card" onclick="openModal('Cheesecake', '15$', 'Sur un lit de speculoos croustillant.', 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad')"><h3>Cheesecake</h3></div>
-        <div class="card" onclick="openModal('Cookies', '15$', 'Pépites de chocolat fondant.', 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e')"><h3>Cookies</h3></div>
     </div>
-
-    <h3 class="sub-category">Cocktails (40$)</h3>
-    <div class="grid">
-        <div class="card" onclick="openModal('Cosmo', '40$', 'Un classique élégant et fruité.', 'https://images.unsplash.com/photo-1536935338788-846bb9981813')"><h3>Cosmo</h3></div>
-        <div class="card" onclick="openModal('Aviation', '40$', 'Cocktail floral et raffiné.', 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b')"><h3>Aviation</h3></div>
-    </div>
-</div>
 
 <div id="equipe" class="container tab-content">
     <h2 class="section-title">L'Équipe</h2>
     <div class="team-grid">
         <div class="team-card"><div class="team-img">HY</div><div class="team-info"><h3>Hina Yorikawa</h3><p style="color: var(--accent)">Patronne</p></div></div>
         <div class="team-card"><div class="team-img">DS</div><div class="team-info"><h3>Daichi Sato</h3><p style="color: var(--accent)">Co-Patron</p></div></div>
-        <div class="team-card"><div class="team-img">TK</div><div class="team-info"><h3>Takumi Kurogane</h3><p>Employé</p></div></div>
         <div class="team-card"><div class="team-img">DW</div><div class="team-info"><h3>Darius Wolff</h3><p>Employé</p></div></div>
     </div>
 </div>
 
 <div id="contact" class="container tab-content">
     <div class="contact-box">
-        <h2 class="section-title">Nous contacter</h2>
-        <p>📍 <strong>Lieu :</strong> Place des cubes (À côté de la fourrière)</p>
-        <p>📱 <strong>Hina Yorikawa :</strong> 5568921</p>
-        <p>📱 <strong>Daichi Sato :</strong> 5562082</p>
+        <h2 class="section-title">Contact</h2>
+        <p>📍 Place des cubes (À côté de la fourrière)</p>
+        <p>📞 Hina : 5568921 | Daichi : 5562082</p>
     </div>
 </div>
 
 <div id="itemModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <img id="modalImg" src="" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
-        <h2 id="modalTitle" style="font-family: 'Oswald'; font-size: 2rem; color: var(--accent);"></h2>
-        <p id="modalPrice" style="font-weight: bold; font-size: 1.5rem; margin-top: 10px;"></p>
-        <p id="modalDesc" style="margin: 20px 0; font-size: 1rem; opacity: 0.8;"></p>
-        <div class="badge-maison">🌱 100% MAISON - Ingrédients Frais & Qualité</div>
+        <img id="modalImg" src="" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+        <h2 id="modalTitle" style="font-family: 'Oswald'; color: var(--accent);"></h2>
+        <p id="modalPrice" style="font-weight: bold; font-size: 1.4rem;"></p>
+        <p id="modalDesc" style="margin: 15px 0; opacity: 0.8;"></p>
+        <div class="badge-maison">✨ 100% MAISON & FRAIS</div>
     </div>
 </div>
-
-<footer>
-    <p style="text-align: center; padding: 40px; opacity: 0.3; font-size: 0.7rem;">&copy; 2026 BEAN MACHINE CORP. TOUS DROITS RÉSERVÉS.</p>
-</footer>
 
 <script>
     function showTab(id) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.getElementById(id).classList.add('active');
-        
-        // Style des liens
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
         document.getElementById('l-' + id).classList.add('active-link');
-        
         window.scrollTo(0,0);
     }
 
     function openModal(title, price, desc, img) {
+        const modalImg = document.getElementById('modalImg');
+        modalImg.src = img; // L'image chargera plus vite car déjà pré-chargée par le navigateur
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('modalPrice').innerText = price;
         document.getElementById('modalDesc').innerText = desc;
-        document.getElementById('modalImg').src = img;
         document.getElementById('itemModal').style.display = 'flex';
     }
 
-    function closeModal() {
-        document.getElementById('itemModal').style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('itemModal')) closeModal();
-    }
+    function closeModal() { document.getElementById('itemModal').style.display = 'none'; }
+    window.onclick = function(e) { if (e.target == document.getElementById('itemModal')) closeModal(); }
 </script>
 
 </body>

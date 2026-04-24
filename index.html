@@ -18,6 +18,7 @@
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Fluidité globale */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
 
@@ -50,7 +51,7 @@
         .hero img { width: 220px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); animation: float 5s ease-in-out infinite; }
         .hero h2 { font-family: 'Oswald', sans-serif; font-size: 4rem; color: var(--accent); margin: 10px 0; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         
-        /* CHANGEMENT : Bouton plus bas */
+        /* Ajustement : Bouton moins collé */
         .btn-hero { 
             margin-top: 35px;
             padding: 14px 35px; background: var(--accent); border: none; color: #fff; 
@@ -76,7 +77,7 @@
         .card h3 { font-family: 'Oswald', sans-serif; font-size: 1.3rem; margin-bottom: 8px; }
         .price-tag { color: var(--accent); font-weight: bold; font-size: 1.2rem; }
 
-        /* MODALE */
+        /* MODALE RAPIDE */
         .modal {
             display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.92); align-items: center; justify-content: center; backdrop-filter: blur(5px);
@@ -85,18 +86,12 @@
             background: #121212; padding: 30px; border-radius: 15px; max-width: 450px; width: 90%; 
             position: relative; border: 1px solid var(--accent); text-align: center;
         }
+        /* Ajustement : Croix mieux placée */
+        .close { position: absolute; top: 20px; right: 25px; font-size: 35px; cursor: pointer; color: var(--accent); line-height: 1; }
         
-        /* CHANGEMENT : Croix mieux placée */
-        .close { 
-            position: absolute; top: 20px; right: 25px; 
-            font-size: 35px; cursor: pointer; color: var(--accent); 
-            line-height: 1; transition: transform 0.2s ease;
-        }
-        .close:hover { transform: scale(1.2); }
-
         .badge-maison { background: #1b4d31; color: #7cfc00; padding: 5px 12px; border-radius: 15px; font-size: 0.7rem; margin-top: 15px; display: inline-block; font-weight: bold; }
 
-        /* EQUIPE */
+        /* EQUIPE & CONTACT */
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
         .team-card { display: flex; align-items: center; gap: 20px; background: var(--glass); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); }
         .team-img { width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Oswald'; color: var(--accent); }
@@ -125,7 +120,7 @@
 
 <div id="accueil" class="tab-content active">
     <section class="hero">
-        <img src="logo.webp" alt="Bean Machine">
+        <img src="logo.webp" alt="Bean Machine Logo Main">
         <h2>BEAN MACHINE</h2>
         <p>L'excellence du café à Los Santos</p>
         <button class="btn-hero" onclick="showTab('formules')">Découvrir le menu</button>
@@ -194,13 +189,14 @@
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
-        const activeLink = document.getElementById('l-' + id);
-        if(activeLink) activeLink.classList.add('active-link');
+        const link = document.getElementById('l-' + id);
+        if(link) link.classList.add('active-link');
         window.scrollTo(0,0);
     }
 
     function openModal(title, price, desc, img) {
-        document.getElementById('modalImg').src = img;
+        const modalImg = document.getElementById('modalImg');
+        modalImg.src = img;
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('modalPrice').innerText = price;
         document.getElementById('modalDesc').innerText = desc;

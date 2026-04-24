@@ -10,8 +10,8 @@
         :root {
             --primary: #4e342a; 
             --accent: #b08d57;
+            --success: #2e7d32;
             --dark: #0a0a0a;
-            /* Fond pro avec dégradé subtil */
             --bg-gradient: radial-gradient(circle at center, #1a120f 0%, #0a0a0a 100%);
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(176, 141, 87, 0.2);
@@ -21,12 +21,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Style des pages (hors accueil) */
-        .tab-content:not(#accueil) {
-            background: var(--bg-gradient);
+        /* FORÇAGE DU CENTRAGE VERTICAL POUR LES PAGES */
+        .tab-content {
+            display: none;
             min-height: 100vh;
-            padding-top: 100px;
+            background: var(--bg-gradient);
+            padding: 100px 20px;
+            flex-direction: column;
+            justify-content: center; /* Centre au milieu verticalement */
+            align-items: center;     /* Centre au milieu horizontalement */
         }
+        
+        /* Correction spécifique pour la carte qui peut être longue */
+        #carte { justify-content: flex-start; }
 
         /* NAV */
         nav {
@@ -46,63 +53,68 @@
         }
         .nav-links a:hover, .nav-links a.active-link { color: var(--accent); }
 
-        /* HERO */
+        /* HERO ACCUEIL */
+        #accueil { display: none; padding: 0; }
         .hero {
-            height: 100vh;
+            height: 100vh; width: 100%;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
         .hero img { width: 220px; animation: float 5s ease-in-out infinite; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
         .hero h2 { font-family: 'Oswald', sans-serif; font-size: 4rem; color: var(--accent); margin: 15px 0; }
-        
         .btn-hero { 
-            margin-top: 40px; /* Espace augmenté */
-            padding: 15px 40px; background: var(--accent); border: none; color: #fff; 
+            margin-top: 40px; padding: 15px 40px; background: var(--accent); border: none; color: #fff; 
             font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 4px; 
             transition: var(--transition); font-family: 'Oswald', sans-serif;
         }
-        .btn-hero:hover { background: #967546; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
-        /* CONTAINER & TITRES */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .section-title { text-align: center; font-family: 'Oswald', sans-serif; font-size: 2.8rem; color: var(--accent); margin-bottom: 50px; text-transform: uppercase; }
+        /* TITRES ET SECTIONS */
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-family: 'Oswald', sans-serif; font-size: 3.5rem; color: var(--accent); margin-bottom: 40px; text-transform: uppercase; }
         .sub-category { font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: #fff; border-left: 4px solid var(--accent); padding-left: 15px; margin: 45px 0 25px; letter-spacing: 1px; }
 
-        /* GRID & CARDS (Effet Verre) */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        /* GRID & CARDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; width: 100%; }
         .card { 
-            background: var(--glass); padding: 30px; border-radius: 15px; border: 1px solid var(--glass-border);
+            background: var(--glass); padding: 40px 20px; border-radius: 15px; border: 1px solid var(--glass-border);
             text-align: center; cursor: pointer; transition: var(--transition); backdrop-filter: blur(5px);
         }
         .card:hover { transform: translateY(-5px); background: rgba(176, 141, 87, 0.1); border-color: var(--accent); }
-        .card h3 { font-family: 'Oswald', sans-serif; font-size: 1.3rem; margin-bottom: 10px; }
-        .price-tag { color: var(--accent); font-weight: bold; font-size: 1.2rem; }
+        .card h3 { font-family: 'Oswald', sans-serif; font-size: 1.8rem; margin-bottom: 10px; }
+        .price-tag { color: var(--accent); font-weight: bold; font-size: 1.4rem; }
 
-        /* MODALE */
+        /* MODALE AMÉLIORÉE */
         .modal {
             display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); align-items: center; justify-content: center; backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.95); align-items: center; justify-content: center; backdrop-filter: blur(10px);
         }
         .modal-content { 
-            background: #121212; padding: 40px; border-radius: 20px; max-width: 450px; width: 90%; 
+            background: #111; padding: 40px; border-radius: 20px; max-width: 600px; width: 90%; 
             position: relative; border: 1px solid var(--accent); text-align: center;
         }
-        .close { position: absolute; top: 20px; right: 25px; font-size: 35px; cursor: pointer; color: var(--accent); line-height: 1; }
+        .close { position: absolute; top: 20px; right: 25px; font-size: 35px; cursor: pointer; color: var(--accent); }
+        .modal-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--glass-border); }
+        
+        .badge-fresh {
+            background: var(--success); color: white; padding: 10px; border-radius: 5px; 
+            font-weight: bold; font-size: 0.9rem; margin-top: 20px; display: inline-block; width: 100%;
+        }
+        .recipe-text { text-align: left; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.9rem; border-left: 3px solid var(--accent); }
 
         /* TEAM */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; }
         .team-card { 
             display: flex; align-items: center; gap: 20px; background: var(--glass); 
-            padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent);
+            padding: 30px; border-radius: 15px; border: 1px solid var(--glass-border);
         }
-        .team-img { width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Oswald'; color: var(--accent); }
+        .team-img { width: 80px; height: 80px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; font-family: 'Oswald'; color: var(--accent); }
+        .team-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.6rem; }
 
         /* CONTACT */
-        .contact-box { background: var(--glass); padding: 50px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border); backdrop-filter: blur(10px); }
+        .contact-box { background: var(--glass); padding: 60px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border); width: 100%; max-width: 700px; }
 
-        .tab-content { display: none; }
-        .active { display: block; animation: fadeIn 0.5s ease-out; }
+        .active { display: flex !important; animation: fadeIn 0.5s ease-out; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
@@ -112,7 +124,7 @@
 
 <nav>
     <div class="nav-left" onclick="showTab('accueil')">
-        <img src="logo.webp" alt="Logo" class="logo-nav">
+        <img src="TheBeanMachine-GTA4-logo.webp" alt="Logo" class="logo-nav">
         <h1>BEAN MACHINE</h1>
     </div>
     <ul class="nav-links">
@@ -126,7 +138,7 @@
 
 <div id="accueil" class="tab-content active">
     <section class="hero">
-        <img src="logo.webp" alt="Bean Machine Logo">
+        <img src="TheBeanMachine-GTA4-logo.webp" alt="Bean Machine Logo">
         <h2>BEAN MACHINE</h2>
         <p>L'excellence du café à Los Santos</p>
         <button class="btn-hero" onclick="showTab('formules')">Découvrir le menu</button>
@@ -137,17 +149,14 @@
     <div class="container">
         <h2 class="section-title">Nos Formules</h2>
         <div class="grid">
-            <div class="card" onclick="openModal('Menu Gourmand', '55$', '1 nourriture, 1 boisson fraîche et 1 dessert au choix.')">
+            <div class="card" onclick="openModal('Menu Gourmand', '55$', 'Le menu complet pour les grandes faims.', 'image_31c5ea.png', '1 Nourriture, 1 Boisson fraîche et 1 Dessert au choix.')">
                 <h3>Menu Gourmand</h3><p class="price-tag">55$</p>
-                <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">Plat + Boisson + Dessert</p>
             </div>
-            <div class="card" onclick="openModal('Menu Classique', '40$', '1 nourriture et 1 boisson fraîche au choix.')">
+            <div class="card" onclick="openModal('Menu Classique', '40$', 'L\'équilibre parfait pour votre pause midi.', 'image_31c5ea.png', '1 Nourriture et 1 Boisson fraîche au choix.')">
                 <h3>Menu Classique</h3><p class="price-tag">40$</p>
-                <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">Plat + Boisson</p>
             </div>
-            <div class="card" onclick="openModal('Menu Start', '35$', '1 dessert et 1 boisson chaude au choix.')">
+            <div class="card" onclick="openModal('Menu Start', '35$', 'Pour bien commencer la journée.', 'image_31c552.jpg', '1 Dessert et 1 Boisson chaude au choix.')">
                 <h3>Menu Start</h3><p class="price-tag">35$</p>
-                <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">Dessert + Boisson Chaude</p>
             </div>
         </div>
     </div>
@@ -159,41 +168,35 @@
 
         <h3 class="sub-category">Nourritures — 30$</h3>
         <div class="grid">
-            <div class="card"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
-            <div class="card"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
-            <div class="card"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Un plat généreux et mijoté.', 'image_31c5ea.png', 'x1 Boeuf, x1 Boîte de tomate, x1 Carotte, x1 Sel, x1 Oignon')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Sain et plein de vitamines.', 'image_31c5ea.png', 'x1 Carotte, x1 Oignon, x1 Gousse de haricots, x1 Patate, x1 Sel, x1 Aubergine')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de tomate', '30$', 'Onctueuse et réconfortante.', 'image_31c5ea.png', 'x1 Sel, x1 Oignon, x1 Tomate')"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons fraîches — 15$</h3>
         <div class="grid">
-            <div class="card"><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
-            <div class="card"><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
-            <div class="card"><h3>Jus d’orange</h3><p class="price-tag">15$</p></div>
-            <div class="card"><h3>Jus d’ananas</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie fraise', '15$', 'Frais et fruité.', 'image_31c552.jpg', 'x1 Sucre, x1 Verre, x1 Fraise')"><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie banane', '15$', 'Énergétique et onctueux.', 'image_31c552.jpg', 'x1 Sucre, x1 Banane, x1 Verre')"><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Jus d’orange', '15$', 'Pressé minute.', 'image_31c172.jpg', 'Verre, Orange pressée')"><h3>Jus d’orange</h3><p class="price-tag">15$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons chaudes — 20$</h3>
         <div class="grid">
-            <div class="card"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
-            <div class="card"><h3>Thé vert</h3><p class="price-tag">20$</p></div>
-            <div class="card"><h3>Expresso</h3><p class="price-tag">20$</p></div>
-            <div class="card"><h3>Macchiato</h3><p class="price-tag">20$</p></div>
-            <div class="card"><h3>Cappuccino</h3><p class="price-tag">20$</p></div>
-            <div class="card"><h3>Thé matcha</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Chocolat chaud', '20$', 'Cacao intense.', 'image_31c172.jpg', 'x1 Sucre, x1 Verre, x1 Chocolat')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Expresso', '20$', 'L\'énergie pure.', 'image_31c172.jpg', 'x1 Sucre, x1 Verre, x1 Graine de café')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Cappuccino', '20$', 'Mousse de lait onctueuse.', 'image_31c172.jpg', 'x1 Sucre, x1 Verre, x1 Graine de café')"><h3>Cappuccino</h3><p class="price-tag">20$</p></div>
         </div>
 
         <h3 class="sub-category">Desserts — 15$</h3>
         <div class="grid">
-            <div class="card"><h3>Donut chocolat</h3><p class="price-tag">15$</p></div>
-            <div class="card"><h3>Donut fraise</h3><p class="price-tag">15$</p></div>
-            <div class="card"><h3>Cheesecake</h3><p class="price-tag">15$</p></div>
-            <div class="card"><h3>Cookies</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Donut chocolat', '15$', 'Gourmandise absolue.', 'image_31c552.jpg', 'x1 Sucre, x1 Oeuf, x1 Chocolat')"><h3>Donut chocolat</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Donut fraise', '15$', 'Douceur sucrée.', 'image_31c552.jpg', 'x1 Sucre, x1 Oeuf, x1 Fraise')"><h3>Donut fraise</h3><p class="price-tag">15$</p></div>
         </div>
-
+        
         <h3 class="sub-category">Cocktails — 40$</h3>
         <div class="grid">
-            <div class="card"><h3>Cosmo</h3><p class="price-tag">40$</p></div>
-            <div class="card"><h3>Aviation</h3><p class="price-tag">40$</p></div>
+            <div class="card" onclick="openModal('Cosmo', '40$', 'Élégant et fruité.', 'image_31c172.jpg', 'x1 Vodka, x1 Citron, x1 Fraise, x1 Verre cocktail')"><h3>Cosmo</h3><p class="price-tag">40$</p></div>
+            <div class="card" onclick="openModal('Aviation', '40$', 'Un voyage floral.', 'image_31c172.jpg', 'x1 Citron, x1 Grappe de raisin, x1 Gin, x1 Verre cocktail')"><h3>Aviation</h3><p class="price-tag">40$</p></div>
         </div>
     </div>
 </div>
@@ -214,9 +217,9 @@
     <div class="container">
         <div class="contact-box">
             <h2 class="section-title">Contact</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 15px;">📍 Place des cubes (À côté de la fourrière)</p>
-            <p style="font-size: 1.2rem;">📞 Hina : 5568921</p>
-            <p style="font-size: 1.2rem; margin-top: 10px;">📞 Daichi : 5562082</p>
+            <p style="font-size: 1.5rem; margin-bottom: 20px;">📍 Place des cubes (À côté de la fourrière)</p>
+            <p style="font-size: 1.4rem; color: var(--accent);">📞 Hina : 5568921</p>
+            <p style="font-size: 1.4rem; color: var(--accent); margin-top: 15px;">📞 Daichi : 5562082</p>
         </div>
     </div>
 </div>
@@ -224,9 +227,17 @@
 <div id="itemModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="font-family: 'Oswald'; color: var(--accent); margin-bottom: 15px;"></h2>
-        <p id="modalPrice" style="font-weight: bold; font-size: 1.4rem; margin-bottom: 15px;"></p>
-        <p id="modalDesc" style="opacity: 0.8; line-height: 1.6;"></p>
+        <h2 id="modalTitle" style="font-family: 'Oswald'; color: var(--accent); margin-bottom: 10px; font-size: 2.2rem;"></h2>
+        <img id="modalImg" src="" class="modal-img">
+        <p id="modalPrice" style="font-weight: bold; font-size: 1.6rem; color: #fff; margin-bottom: 10px;"></p>
+        <p id="modalDesc" style="opacity: 0.8; line-height: 1.4; margin-bottom: 15px;"></p>
+        
+        <div class="recipe-text">
+            <strong style="color: var(--accent)">COMPOSITION / RECETTE :</strong><br>
+            <span id="modalRecipe"></span>
+        </div>
+
+        <div class="badge-fresh">✓ 100% PRODUITS FRAIS & FAIT MAISON</div>
     </div>
 </div>
 
@@ -240,10 +251,12 @@
         window.scrollTo(0,0);
     }
 
-    function openModal(title, price, desc) {
+    function openModal(title, price, desc, img, recipe) {
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('modalPrice').innerText = price;
         document.getElementById('modalDesc').innerText = desc;
+        document.getElementById('modalImg').src = img;
+        document.getElementById('modalRecipe').innerHTML = recipe;
         document.getElementById('itemModal').style.display = 'flex';
     }
 

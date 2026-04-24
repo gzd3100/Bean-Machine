@@ -258,12 +258,16 @@
     }
 
     function openModal(title, price, desc, img, recipe) {
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalPrice').innerText = price;
-        document.getElementById('modalDesc').innerText = desc;
-        document.getElementById('modalRecipe').innerText = recipe;
-        document.getElementById('modalImg').src = img;
-        document.getElementById('itemModal').style.display = 'flex';
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalPrice').innerText = price;
+    document.getElementById('modalDesc').innerText = desc;
+    document.getElementById('modalImg').src = img;
+    
+    // Cette ligne transforme les sauts de ligne en vrais retours à la ligne HTML
+    document.getElementById('modalRecipe').innerHTML = recipe.replace(/\n/g, '<br>');
+    
+    document.getElementById('itemModal').style.display = 'flex';
+}
     }
 
     function closeModal() { document.getElementById('itemModal').style.display = 'none'; }

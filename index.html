@@ -16,7 +16,6 @@
         *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
         html{scroll-behavior:smooth}
         body{font-family:'Poppins',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
-
         nav{position:fixed;top:0;width:100%;height:80px;background:rgba(10,10,10,0.85);backdrop-filter:blur(15px);display:flex;justify-content:space-between;align-items:center;padding:0 5%;z-index:1000;border-bottom:1px solid var(--glass-border)}
         .nav-left{display:flex;align-items:center;gap:12px;cursor:pointer}
         .logo-nav{height:55px;width:auto;object-fit:contain}
@@ -24,7 +23,6 @@
         .nav-links{display:flex;gap:20px;list-style:none}
         .nav-links a{text-decoration:none;color:rgba(255,255,255,0.6);font-size:0.8rem;text-transform:uppercase;font-weight:600;cursor:pointer;transition:var(--transition)}
         .nav-links a:hover,.nav-links a.active-link{color:var(--accent)}
-
         .tab-content{display:none;min-height:100vh;background:var(--bg-gradient);padding:120px 20px 60px}
         #accueil,#formules,#equipe,#contact{display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center}
         .tab-content.active{display:flex!important;animation:fadeIn 0.5s ease-out}
@@ -33,11 +31,9 @@
         @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
         @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
         @keyframes spin{to{transform:rotate(360deg)}}
-
         .container{width:100%;max-width:1200px;margin:0 auto}
         .section-title{font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);color:var(--accent);margin-bottom:50px;text-transform:uppercase}
         .sub-category{font-family:'Oswald',sans-serif;font-size:2rem;color:#fff;border-left:4px solid var(--accent);padding-left:15px;margin:50px 0 30px;text-align:left}
-
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;width:100%}
         .card{background:var(--glass);padding:50px 25px;border-radius:15px;border:1px solid var(--glass-border);text-align:center;cursor:pointer;transition:var(--transition);backdrop-filter:blur(5px)}
         .card:hover{transform:translateY(-8px) scale(1.02);background:rgba(176,141,87,0.08);border-color:var(--accent);box-shadow:0 20px 40px rgba(0,0,0,0.5)}
@@ -47,26 +43,22 @@
         .formule-card{background:var(--glass);padding:60px 25px;border-radius:15px;border:1px solid var(--glass-border);text-align:center;cursor:pointer;transition:var(--transition);backdrop-filter:blur(5px)}
         .formule-card:hover{transform:translateY(-8px);background:rgba(176,141,87,0.1);border-color:var(--accent)}
         .formule-card h3{font-family:'Oswald',sans-serif;font-size:2.2rem;margin-bottom:10px}
-
         .hero{height:100vh;width:100%;background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
         .hero img{width:280px;margin-bottom:20px;animation:float 5s ease-in-out infinite}
         .hero h2{font-family:'Oswald',sans-serif;font-size:clamp(3rem,8vw,5rem);color:var(--accent);margin:10px 0;letter-spacing:2px}
         .hero p{font-size:clamp(1rem,2.5vw,1.5rem);letter-spacing:3px;font-weight:300}
         .btn-hero{margin-top:40px;padding:20px 50px;background:var(--accent);border:none;color:#fff;font-weight:bold;text-transform:uppercase;cursor:pointer;border-radius:5px;font-family:'Oswald',sans-serif;font-size:1.2rem;transition:var(--transition)}
         .btn-hero:hover{background:#8a6d43;transform:scale(1.05)}
-
         .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;width:100%}
         .team-card{display:flex;align-items:center;gap:25px;background:var(--glass);padding:40px;border-radius:20px;border:1px solid var(--glass-border);text-align:left}
         .team-avatar{width:90px;height:90px;min-width:90px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-family:'Oswald',sans-serif;color:var(--accent);border:2px solid var(--accent)}
         .team-card h3{font-family:'Oswald',sans-serif;font-size:1.8rem}
         .team-role{color:var(--accent);margin-top:4px}
-
         .contact-box{background:var(--glass);padding:80px 40px;border-radius:25px;border:1px solid var(--glass-border);width:100%;max-width:850px;display:flex;flex-direction:column;align-items:center}
         .contact-phones{background:rgba(176,141,87,0.15);padding:40px;border-radius:20px;border:1px solid var(--accent);width:100%}
         .contact-phone{font-size:clamp(1.4rem,3vw,2rem);color:var(--accent);margin-bottom:20px}
         .contact-phone:last-child{margin-bottom:0}
         .contact-address{font-size:clamp(1.2rem,3vw,2.2rem);margin-bottom:35px;font-weight:300}
-
         .modal-overlay{display:none;position:fixed;z-index:2000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0);align-items:center;justify-content:center;transition:background 0.4s ease,backdrop-filter 0.4s ease}
         .modal-overlay.opening{display:flex}
         .modal-overlay.open{background:rgba(0,0,0,0.93);backdrop-filter:blur(14px)}
@@ -88,7 +80,6 @@
         .modal-desc{font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.65);margin-bottom:20px}
         .modal-recipe-box{background:rgba(176,141,87,0.07);padding:18px 22px;border-radius:12px;margin-bottom:22px;border-left:3px solid var(--accent);line-height:2;font-size:0.95rem;color:rgba(255,255,255,0.82)}
         .badge-fresh{background:var(--success);color:white;padding:13px;border-radius:8px;font-weight:bold;display:block;width:100%;letter-spacing:1px;text-align:center;font-size:0.88rem}
-
         @media(max-width:680px){
             nav{padding:0 4%}.nav-left h1{display:none}.nav-links{gap:12px}.nav-links a{font-size:0.7rem}
             .hero img{width:180px}.modal-panel{border-radius:18px}.modal-body{padding:18px}
@@ -152,6 +143,7 @@
             <div class="card" onclick="openModal('Smoothie banane','15$','Onctuosité et énergie dans un seul verre.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_28_59.png','Une préparation onctueuse à base de bananes mûres sélectionnées, travaillée pour obtenir une crème légère et énergisante.')"><span class="card-icon">🍌</span><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
             <div class="card" onclick="openModal('Jus d\'orange','15$','Le classique indispensable pressé minute.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_29_41.png','Une extraction pure d\'oranges gorgées de soleil, pressées à la demande pour garantir une fraîcheur optimale.')"><span class="card-icon">🍊</span><h3>Jus d'orange</h3><p class="price-tag">15$</p></div>
             <div class="card" onclick="openModal('Jus d\'ananas','15$','Une touche tropicale acidulée.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_03.png','Un pur jus d\'ananas exotique offrant un équilibre délicat entre sucre naturel et notes acidulées, servi sur lit de glace.')"><span class="card-icon">🍍</span><h3>Jus d'ananas</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Thé Matcha','15$','Une boisson zen aux multiples vertus.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_40_35.png','Poudre de thé vert japonais de haute qualité fouettée dans une eau pure à température contrôlée pour une texture veloutée.')"><span class="card-icon">🍵</span><h3>Thé Matcha</h3><p class="price-tag">15$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons chaudes — 20$</h3>
@@ -161,7 +153,6 @@
             <div class="card" onclick="openModal('Expresso','20$','L\'essence même du café pour un réveil intense.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/espresso.png','Un shot de caféine pur extrait sous haute pression à partir de nos grains torréfiés maison, pour un arôme puissant.')"><span class="card-icon">☕</span><h3>Expresso</h3><p class="price-tag">20$</p></div>
             <div class="card" onclick="openModal('Macchiato','20$','Le mariage parfait entre force et douceur.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/macchiato.png','Une base d\'expresso corsé marquée d\'une fine couche de mousse de lait onctueuse pour une dégustation équilibrée.')"><span class="card-icon">☕</span><h3>Macchiato</h3><p class="price-tag">20$</p></div>
             <div class="card" onclick="openModal('Cappuccino','20$','L\'icône italienne par excellence.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_29_57.png','Un tiers d\'expresso, un tiers de lait chaud et un tiers de mousse de lait aérienne pour un plaisir tout en légèreté.')"><span class="card-icon">☕</span><h3>Cappuccino</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Thé Matcha','20$','Une boisson zen aux multiples vertus.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_40_35.png','Poudre de thé vert japonais de haute qualité fouettée dans une eau pure à température contrôlée pour une texture veloutée.')"><span class="card-icon">🍵</span><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
         </div>
 
         <h3 class="sub-category">Desserts — 25$</h3>

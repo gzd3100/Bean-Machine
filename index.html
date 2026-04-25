@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
+<html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Machine | Site Officiel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --primary:#4e342a; --accent:#b08d57; --success:#2e7d32;
@@ -133,7 +132,7 @@
             .admin-row{grid-template-columns:1fr;gap:4px}
         }
     </style>
-</head>
+<link rel="stylesheet" href="chrome-extension://emnoomldgleagdjapdeckpmebokijail/font/roboto-fonts.css" class="wtd-font"><link rel="stylesheet" href="chrome-extension://emnoomldgleagdjapdeckpmebokijail/font/fonts.css" class="wtd-font"><link rel="stylesheet" href="chrome-extension://emnoomldgleagdjapdeckpmebokijail/font/unbounded-fonts.css" class="wtd-font"></head>
 <body>
 
 <nav>
@@ -142,8 +141,8 @@
         <h1>BEAN MACHINE</h1>
     </div>
     <ul class="nav-links">
-        <li><a onclick="showTab('accueil')" id="l-accueil" class="active-link">Accueil</a></li>
-        <li><a onclick="showTab('formules')" id="l-formules">Formules</a></li>
+        <li><a onclick="showTab('accueil')" id="l-accueil" class="">Accueil</a></li>
+        <li><a onclick="showTab('formules')" id="l-formules" class="active-link">Formules</a></li>
         <li><a onclick="showTab('carte')" id="l-carte">La Carte</a></li>
         <li><a onclick="showTab('equipe')" id="l-equipe">L'Équipe</a></li>
         <li><a onclick="showTab('contact')" id="l-contact">Contact</a></li>
@@ -151,7 +150,7 @@
 </nav>
 
 <!-- ACCUEIL -->
-<div id="accueil" class="tab-content active" style="padding:0">
+<div id="accueil" class="tab-content" style="padding: 0px; display: none;">
     <section class="hero">
         <img src="logo.webp" alt="Logo Bean Machine" onerror="this.style.display='none'">
         <h2>BEAN MACHINE</h2>
@@ -161,7 +160,7 @@
 </div>
 
 <!-- FORMULES -->
-<div id="formules" class="tab-content">
+<div id="formules" class="tab-content active" style="display: flex;">
     <div class="container">
         <h2 class="section-title">Nos Formules</h2>
         <div class="grid">
@@ -173,7 +172,7 @@
 </div>
 
 <!-- CARTE -->
-<div id="carte" class="tab-content">
+<div id="carte" class="tab-content" style="display: none;">
     <div class="container">
         <h2 class="section-title">La Carte</h2>
 
@@ -219,7 +218,7 @@
 </div>
 
 <!-- ÉQUIPE -->
-<div id="equipe" class="tab-content">
+<div id="equipe" class="tab-content" style="display: none;">
     <div class="container">
         <h2 class="section-title">L'Équipe</h2>
         <div class="team-grid">
@@ -232,7 +231,7 @@
 </div>
 
 <!-- CONTACT -->
-<div id="contact" class="tab-content">
+<div id="contact" class="tab-content" style="display: none;">
     <div class="container" style="display:flex;justify-content:center">
         <div class="contact-box">
             <h2 class="section-title">Contact</h2>
@@ -273,39 +272,39 @@
 <button id="adminBtn" onclick="openAdmin()" title="Admin">⚙️</button>
 
 <!-- PANNEAU ADMIN -->
-<div id="adminOverlay">
+<div id="adminOverlay" class="open">
     <div id="adminPanel">
 
-        <div id="loginBox">
+        <div id="loginBox" style="display: none;" data-dashlane-rid="6a662a106c794e91" data-dashlane-classification="login">
             <h3>🔐 Accès Admin</h3>
             <p style="color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:20px">Entrez le mot de passe</p>
-            <input type="password" id="loginInput" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkLogin()">
+            <input type="password" id="loginInput" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkLogin()" data-dashlane-rid="b290717d7a17e304" data-dashlane-classification="password" data-dashlane-filled-by-user="true" data-kwimpalastatus="dead">
             <br><br>
-            <p id="loginError"></p>
-            <button id="loginSubmit" onclick="checkLogin()">Entrer</button>
+            <p id="loginError">❌ Mot de passe incorrect</p>
+            <button id="loginSubmit" onclick="checkLogin()" data-dashlane-label="true" data-dashlane-rid="f78c2b866519faa5" data-dashlane-classification="action,login" data-kwimpalastatus="dead">Entrer</button>
             <br><br>
-            <button class="btn-close-admin" onclick="closeAdmin()">Annuler</button>
+            <button class="btn-close-admin" onclick="closeAdmin()" data-dashlane-label="true" data-dashlane-rid="65e15c1419282138" data-dashlane-classification="other">Annuler</button>
         </div>
 
-        <div id="adminForm" style="display:none">
+        <div id="adminForm" style="display: block;" data-dashlane-rid="3d0c4740b7fc52a6" data-dashlane-classification="other">
             <h2>🖼️ Gestion des images</h2>
             <p class="hint">Colle le lien GitHub (blob ou raw), le site convertit automatiquement. Ensuite clique <strong style="color:#6fcf6f">Exporter</strong> et upload le fichier sur GitHub.</p>
 
             <div class="admin-section-title">Formules</div>
-            <div class="admin-row"><label>Menu Gourmand</label><input id="img_menu_gourmand" placeholder="https://github.com/gzd3100/Bean-Machine/blob/main/..."></div>
-            <div class="admin-row"><label>Menu Classique</label><input id="img_menu_classique" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Menu Start</label><input id="img_menu_start" placeholder="https://github.com/..."></div>
+            <div class="admin-row"><label>Menu Gourmand</label><input id="img_menu_gourmand" placeholder="https://github.com/gzd3100/Bean-Machine/blob/main/..." data-dashlane-rid="ef8300a182573fd7" data-dashlane-classification="other"></div>
+            <div class="admin-row"><label>Menu Classique</label><input id="img_menu_classique" placeholder="https://github.com/..." data-dashlane-rid="d90be79d0d10a003" data-dashlane-classification="other"></div>
+            <div class="admin-row"><label>Menu Start</label><input id="img_menu_start" placeholder="https://github.com/..." data-dashlane-rid="e1daa3d2ba4bc554" data-dashlane-classification="other"></div>
 
             <div class="admin-section-title">Nourritures</div>
-            <div class="admin-row"><label>Ragoût de boeuf</label><input id="img_ragout" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Soupe de légumes</label><input id="img_soupe_legumes" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Soupe de tomate</label><input id="img_soupe_tomate" placeholder="https://github.com/..."></div>
+            <div class="admin-row"><label>Ragoût de boeuf</label><input id="img_ragout" placeholder="https://github.com/..." data-dashlane-rid="010c4397cd1cad71" data-dashlane-classification="other"></div>
+            <div class="admin-row"><label>Soupe de légumes</label><input id="img_soupe_legumes" placeholder="https://github.com/..." data-dashlane-rid="ffecd1481e72de38" data-dashlane-classification="other"></div>
+            <div class="admin-row"><label>Soupe de tomate</label><input id="img_soupe_tomate" placeholder="https://github.com/..." data-dashlane-rid="d2fb9e06c90745fb" data-dashlane-classification="other"></div>
 
             <div class="admin-section-title">Boissons fraîches</div>
-            <div class="admin-row"><label>Smoothie fraise</label><input id="img_smoothie_fraise" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Smoothie banane</label><input id="img_smoothie_banane" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Jus d'orange</label><input id="img_jus_orange" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Jus d'ananas</label><input id="img_jus_ananas" placeholder="https://github.com/..."></div>
+            <div class="admin-row"><label>Smoothie fraise</label><input id="img_smoothie_fraise" placeholder="https://github.com/..." data-dashlane-rid="4daabee9d4426b22" data-dashlane-classification="other"></div>
+            <div class="admin-row"><label>Smoothie banane</label><input id="img_smoothie_banane" placeholder="https://github.com/..." data-dashlane-rid="fbc56fce7f0156c7" data-dashlane-classification="other"></div>
+            <div class="admin-row"><label>Jus d'orange</label><input id="img_jus_orange" placeholder="https://github.com/..." data-dashlane-rid="996d3dd3068d6d37" data-dashlane-classification="other"></div>
+            <div class="admin-row"><label>Jus d'ananas</label><input id="img_jus_ananas" placeholder="https://github.com/..." data-dashlane-rid="7ea20f04b7b4a34f" data-dashlane-classification="other"></div>
 
             <div class="admin-section-title">Boissons chaudes</div>
             <div class="admin-row"><label>Chocolat chaud</label><input id="img_chocolat_chaud" placeholder="https://github.com/..."></div>
@@ -330,7 +329,7 @@
                 <button class="btn-close-admin" onclick="closeAdmin()">Fermer</button>
             </div>
 
-            <div id="exportBox">
+            <div id="exportBox" style="display: none;">
                 <p>✅ Ton fichier est prêt ! Clique pour télécharger et upload-le sur GitHub.</p>
                 <button class="btn-copy" onclick="downloadExport()">⬇️ Télécharger index.html</button>
             </div>
@@ -473,15 +472,40 @@ function exportCode() {
 
     // On récupère le HTML actuel et on remplace le bloc FALLBACK + _exportedImgs
     const inject = `
-    // ── Images configurées via l'admin ──
-    window._exportedImgs = ${imgsJson};
+    
     `;
 
     // On prend tout le HTML de la page et on injecte les URLs avant la fermeture body
     let html = document.documentElement.outerHTML;
     // On remplace le placeholder window._exportedImgs s'il existe déjà
     html = html.replace(/\/\/ ── Images configurées via l'admin ──[\s\S]*?};/, '');
-    // On injecte juste avant </body>
+    // On injecte juste avant <script>
+    // ── Images configurées via l'admin ──
+    window._exportedImgs = {
+    "img_menu_gourmand": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_08.png",
+    "img_menu_classique": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_13.png",
+    "img_menu_start": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_53.png",
+    "img_ragout": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ragout_boeuf.png",
+    "img_soupe_legumes": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_legume.png",
+    "img_soupe_tomate": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_tomate.png",
+    "img_smoothie_fraise": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/smoothie_fraise.png",
+    "img_smoothie_banane": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_28_59.png",
+    "img_jus_orange": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_29_41.png",
+    "img_jus_ananas": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_03.png",
+    "img_chocolat_chaud": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_56.png",
+    "img_the_vert": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_43_03.png",
+    "img_expresso": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/espresso.png",
+    "img_macchiato": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/macchiato.png",
+    "img_cappuccino": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_29_57.png",
+    "img_the_matcha": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_40_35.png",
+    "img_donut_chocolat": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_36.png",
+    "img_donut_fraise": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_32.png",
+    "img_cheesecake": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_29.png",
+    "img_cookies": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_25.png",
+    "img_cosmo": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_22.png",
+    "img_aviation": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_57_35.png"
+};
+    </script></body>
     html = html.replace('</body>', `<script>${inject}<\/script></body>`);
 
     _exportedCode = '<!DOCTYPE html>\n' + html;
@@ -501,5 +525,6 @@ function downloadExport() {
     setTimeout(() => toast.classList.remove('show'), 2500);
 }
 </script>
-</body>
-</html>
+
+
+<div id="give-freely-root-ejkiikneibegknkgimmihdpcbcedgmpo" class="give-freely-root" data-extension-id="ejkiikneibegknkgimmihdpcbcedgmpo" data-extension-name="Volume Booster" style="display: block;"></div><script id="define-custom-element-wtd-root" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-root&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script><script id="define-custom-element-wtd-div" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-div&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script><wtd-div id="wanteeedContainer" style="position: fixed; display: block; top: 0px; right: 0px; z-index: 2147483647;"></wtd-div><script id="define-custom-element-wtd-root" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-root&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script><wtd-root id="wtd-update-screen"></wtd-root><script id="define-custom-element-wtd-root" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-root&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script></body></html>

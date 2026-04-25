@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr"><head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Machine | Site Officiel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary:#4e342a; --accent:#b08d57; --success:#2e7d32;
@@ -88,51 +89,13 @@
         .modal-recipe-box{background:rgba(176,141,87,0.07);padding:18px 22px;border-radius:12px;margin-bottom:22px;border-left:3px solid var(--accent);line-height:2;font-size:0.95rem;color:rgba(255,255,255,0.82)}
         .badge-fresh{background:var(--success);color:white;padding:13px;border-radius:8px;font-weight:bold;display:block;width:100%;letter-spacing:1px;text-align:center;font-size:0.88rem}
 
-        /* ADMIN */
-        #adminBtn{position:fixed;bottom:20px;right:20px;z-index:3000;width:44px;height:44px;border-radius:50%;background:rgba(176,141,87,0.15);border:1px solid rgba(176,141,87,0.3);color:var(--accent);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
-        #adminBtn:hover{background:rgba(176,141,87,0.3)}
-        #adminOverlay{display:none;position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,0.96);backdrop-filter:blur(14px);align-items:center;justify-content:center}
-        #adminOverlay.open{display:flex}
-        #adminPanel{background:#0d0d0d;border:1px solid var(--accent);border-radius:20px;width:92%;max-width:720px;max-height:90vh;overflow-y:auto;padding:36px}
-        #adminPanel h2{font-family:'Oswald',sans-serif;color:var(--accent);font-size:2rem;margin-bottom:6px}
-        #adminPanel p.hint{color:rgba(255,255,255,0.4);font-size:0.82rem;margin-bottom:28px}
-        .admin-row{display:grid;grid-template-columns:160px 1fr;align-items:center;gap:12px;margin-bottom:14px}
-        .admin-row label{color:rgba(255,255,255,0.75);font-size:0.88rem;font-weight:600}
-        .admin-row input{background:#151515;border:1px solid rgba(176,141,87,0.25);border-radius:8px;color:#fff;padding:10px 14px;font-size:0.85rem;font-family:'Poppins',sans-serif;width:100%;transition:var(--transition)}
-        .admin-row input:focus{outline:none;border-color:var(--accent)}
-        .admin-row input::placeholder{color:rgba(255,255,255,0.2)}
-        .admin-section-title{font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--accent);border-left:3px solid var(--accent);padding-left:10px;margin:28px 0 16px}
-        .admin-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-        .btn-save{flex:1;padding:14px;background:var(--accent);border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:1.1rem;border-radius:8px;cursor:pointer;transition:var(--transition)}
-        .btn-save:hover{background:#8a6d43}
-        .btn-export{flex:1;padding:14px;background:#1a3a1a;border:1px solid var(--success);color:#6fcf6f;font-family:'Oswald',sans-serif;font-size:1.1rem;border-radius:8px;cursor:pointer;transition:var(--transition)}
-        .btn-export:hover{background:#2a5a2a}
-        .btn-close-admin{padding:14px 24px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-family:'Oswald',sans-serif;font-size:1.1rem;border-radius:8px;cursor:pointer;transition:var(--transition)}
-        .btn-close-admin:hover{border-color:rgba(255,255,255,0.4);color:#fff}
-        .saved-toast{position:fixed;bottom:80px;right:20px;background:var(--success);color:#fff;padding:12px 20px;border-radius:10px;font-weight:600;font-size:0.9rem;z-index:5000;opacity:0;transform:translateY(10px);transition:all 0.3s ease;pointer-events:none}
-        .saved-toast.show{opacity:1;transform:translateY(0)}
-
-        /* EXPORT BOX */
-        #exportBox{display:none;margin-top:24px;background:#0a0a0a;border:1px solid var(--success);border-radius:12px;padding:20px}
-        #exportBox p{color:#6fcf6f;font-size:0.85rem;margin-bottom:12px;font-weight:600}
-        #exportBox textarea{width:100%;height:120px;background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.7);font-size:0.75rem;padding:12px;resize:none;font-family:monospace}
-        #exportBox .btn-copy{margin-top:10px;padding:10px 20px;background:var(--success);border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:1rem;border-radius:8px;cursor:pointer;width:100%}
-
-        #loginBox{text-align:center}
-        #loginBox h3{font-family:'Oswald',sans-serif;color:var(--accent);font-size:1.8rem;margin-bottom:20px}
-        #loginInput{background:#151515;border:1px solid rgba(176,141,87,0.3);border-radius:8px;color:#fff;padding:12px 18px;font-size:1rem;width:100%;max-width:300px;margin-bottom:14px;text-align:center}
-        #loginInput:focus{outline:none;border-color:var(--accent)}
-        #loginError{color:#e57373;font-size:0.85rem;margin-bottom:10px;min-height:20px}
-        #loginSubmit{padding:12px 36px;background:var(--accent);border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:1.1rem;border-radius:8px;cursor:pointer}
-
         @media(max-width:680px){
             nav{padding:0 4%}.nav-left h1{display:none}.nav-links{gap:12px}.nav-links a{font-size:0.7rem}
             .hero img{width:180px}.modal-panel{border-radius:18px}.modal-body{padding:18px}
             .modal-img-wrapper,.modal-img{height:200px}
-            .admin-row{grid-template-columns:1fr;gap:4px}
         }
     </style>
-<link rel="stylesheet" href="chrome-extension://emnoomldgleagdjapdeckpmebokijail/font/roboto-fonts.css" class="wtd-font"><link rel="stylesheet" href="chrome-extension://emnoomldgleagdjapdeckpmebokijail/font/fonts.css" class="wtd-font"><link rel="stylesheet" href="chrome-extension://emnoomldgleagdjapdeckpmebokijail/font/unbounded-fonts.css" class="wtd-font"></head>
+</head>
 <body>
 
 <nav>
@@ -141,8 +104,8 @@
         <h1>BEAN MACHINE</h1>
     </div>
     <ul class="nav-links">
-        <li><a onclick="showTab('accueil')" id="l-accueil" class="">Accueil</a></li>
-        <li><a onclick="showTab('formules')" id="l-formules" class="active-link">Formules</a></li>
+        <li><a onclick="showTab('accueil')" id="l-accueil" class="active-link">Accueil</a></li>
+        <li><a onclick="showTab('formules')" id="l-formules">Formules</a></li>
         <li><a onclick="showTab('carte')" id="l-carte">La Carte</a></li>
         <li><a onclick="showTab('equipe')" id="l-equipe">L'Équipe</a></li>
         <li><a onclick="showTab('contact')" id="l-contact">Contact</a></li>
@@ -150,7 +113,7 @@
 </nav>
 
 <!-- ACCUEIL -->
-<div id="accueil" class="tab-content" style="padding: 0px; display: none;">
+<div id="accueil" class="tab-content active" style="padding:0">
     <section class="hero">
         <img src="logo.webp" alt="Logo Bean Machine" onerror="this.style.display='none'">
         <h2>BEAN MACHINE</h2>
@@ -160,65 +123,65 @@
 </div>
 
 <!-- FORMULES -->
-<div id="formules" class="tab-content active" style="display: flex;">
+<div id="formules" class="tab-content">
     <div class="container">
         <h2 class="section-title">Nos Formules</h2>
         <div class="grid">
-            <div class="formule-card" onclick="openModal('Menu Gourmand','55$','L\'expérience complète Bean Machine.','img_menu_gourmand','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche\n- Un dessert OU une boisson chaude')"><h3>Menu Gourmand</h3><p class="price-tag">55$</p></div>
-            <div class="formule-card" onclick="openModal('Menu Classique','40$','L\'essentiel pour un bon repas.','img_menu_classique','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche')"><h3>Menu Classique</h3><p class="price-tag">40$</p></div>
-            <div class="formule-card" onclick="openModal('Menu Start','35$','Pour un réveil ou un goûter réussi.','img_menu_start','Ce menu contient :\n- Un dessert\n- Une boisson chaude')"><h3>Menu Start</h3><p class="price-tag">35$</p></div>
+            <div class="formule-card" onclick="openModal('Menu Gourmand','55$','L\'expérience complète Bean Machine.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_08.png','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche\n- Un dessert OU une boisson chaude')"><h3>Menu Gourmand</h3><p class="price-tag">55$</p></div>
+            <div class="formule-card" onclick="openModal('Menu Classique','40$','L\'essentiel pour un bon repas.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_13.png','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche')"><h3>Menu Classique</h3><p class="price-tag">40$</p></div>
+            <div class="formule-card" onclick="openModal('Menu Start','35$','Pour un réveil ou un goûter réussi.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_53.png','Ce menu contient :\n- Un dessert\n- Une boisson chaude')"><h3>Menu Start</h3><p class="price-tag">35$</p></div>
         </div>
     </div>
 </div>
 
 <!-- CARTE -->
-<div id="carte" class="tab-content" style="display: none;">
+<div id="carte" class="tab-content">
     <div class="container">
         <h2 class="section-title">La Carte</h2>
 
         <h3 class="sub-category">Nourritures — 30$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Ragoût de boeuf','30$','Un plat généreux et mijoté lentement pour une viande fondante.','img_ragout','Sélection de pièces de bœuf braisées longuement dans une réduction de tomates fraîches, accompagnées de carottes fondantes et d\'oignons caramélisés.')"><span class="card-icon">🥘</span><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
-            <div class="card" onclick="openModal('Soupe de légumes','30$','Un cocktail de vitamines frais et léger.','img_soupe_legumes','Un velouté de saison préparé à partir de légumes du marché, mariant la douceur de la pomme de terre à l\'onctuosité de l\'aubergine.')"><span class="card-icon">🥦</span><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
-            <div class="card" onclick="openModal('Soupe de tomate','30$','Un classique réconfortant aux saveurs ensoleillées.','img_soupe_tomate','Une émulsion de tomates mûres infusées à l\'oignon blanc, subtilement assaisonnée pour un équilibre parfait.')"><span class="card-icon">🍅</span><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Ragoût de boeuf','30$','Un plat généreux et mijoté lentement pour une viande fondante.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ragout_boeuf.png','Sélection de pièces de bœuf braisées longuement dans une réduction de tomates fraîches, accompagnées de carottes fondantes et d\'oignons caramélisés.')"><span class="card-icon">🥘</span><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de légumes','30$','Un cocktail de vitamines frais et léger.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_legume.png','Un velouté de saison préparé à partir de légumes du marché, mariant la douceur de la pomme de terre à l\'onctuosité de l\'aubergine.')"><span class="card-icon">🥦</span><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openModal('Soupe de tomate','30$','Un classique réconfortant aux saveurs ensoleillées.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_tomate.png','Une émulsion de tomates mûres infusées à l\'oignon blanc, subtilement assaisonnée pour un équilibre parfait.')"><span class="card-icon">🍅</span><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons fraîches — 15$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Smoothie fraise','15$','Une douceur fruitée et rafraîchissante.','img_smoothie_fraise','Des fraises fraîchement cueillies mixées avec une pointe de sucre de canne pour une texture onctueuse.')"><span class="card-icon">🍓</span><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Smoothie banane','15$','Onctuosité et énergie dans un seul verre.','img_smoothie_banane','Une préparation onctueuse à base de bananes mûres sélectionnées, travaillée pour obtenir une crème légère et énergisante.')"><span class="card-icon">🍌</span><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Jus d\'orange','15$','Le classique indispensable pressé minute.','img_jus_orange','Une extraction pure d\'oranges gorgées de soleil, pressées à la demande pour garantir une fraîcheur optimale.')"><span class="card-icon">🍊</span><h3>Jus d'orange</h3><p class="price-tag">15$</p></div>
-            <div class="card" onclick="openModal('Jus d\'ananas','15$','Une touche tropicale acidulée.','img_jus_ananas','Un pur jus d\'ananas exotique offrant un équilibre délicat entre sucre naturel et notes acidulées, servi sur lit de glace.')"><span class="card-icon">🍍</span><h3>Jus d'ananas</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie fraise','15$','Une douceur fruitée et rafraîchissante.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/smoothie_fraise.png','Des fraises fraîchement cueillies mixées avec une pointe de sucre de canne pour une texture onctueuse.')"><span class="card-icon">🍓</span><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Smoothie banane','15$','Onctuosité et énergie dans un seul verre.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_28_59.png','Une préparation onctueuse à base de bananes mûres sélectionnées, travaillée pour obtenir une crème légère et énergisante.')"><span class="card-icon">🍌</span><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Jus d\'orange','15$','Le classique indispensable pressé minute.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_29_41.png','Une extraction pure d\'oranges gorgées de soleil, pressées à la demande pour garantir une fraîcheur optimale.')"><span class="card-icon">🍊</span><h3>Jus d'orange</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openModal('Jus d\'ananas','15$','Une touche tropicale acidulée.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_03.png','Un pur jus d\'ananas exotique offrant un équilibre délicat entre sucre naturel et notes acidulées, servi sur lit de glace.')"><span class="card-icon">🍍</span><h3>Jus d'ananas</h3><p class="price-tag">15$</p></div>
         </div>
 
         <h3 class="sub-category">Boissons chaudes — 20$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Chocolat chaud','20$','Réconfort et gourmandise chocolatée.','img_chocolat_chaud','Une ganache de cacao pur fondue dans un lait soyeux, délicatement sucrée pour une expérience gourmande incomparable.')"><span class="card-icon">🍫</span><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Thé vert','20$','L\'élégance d\'une infusion millénaire.','img_the_vert','Une infusion délicate de feuilles de thé vert sélectionnées, offrant des notes végétales et une finale pure en bouche.')"><span class="card-icon">🍵</span><h3>Thé vert</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Expresso','20$','L\'essence même du café pour un réveil intense.','img_expresso','Un shot de caféine pur extrait sous haute pression à partir de nos grains torréfiés maison, pour un arôme puissant.')"><span class="card-icon">☕</span><h3>Expresso</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Macchiato','20$','Le mariage parfait entre force et douceur.','img_macchiato','Une base d\'expresso corsé marquée d\'une fine couche de mousse de lait onctueuse pour une dégustation équilibrée.')"><span class="card-icon">☕</span><h3>Macchiato</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Cappuccino','20$','L\'icône italienne par excellence.','img_cappuccino','Un tiers d\'expresso, un tiers de lait chaud et un tiers de mousse de lait aérienne pour un plaisir tout en légèreté.')"><span class="card-icon">☕</span><h3>Cappuccino</h3><p class="price-tag">20$</p></div>
-            <div class="card" onclick="openModal('Thé Matcha','20$','Une boisson zen aux multiples vertus.','img_the_matcha','Poudre de thé vert japonais de haute qualité fouettée dans une eau pure à température contrôlée pour une texture veloutée.')"><span class="card-icon">🍵</span><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Chocolat chaud','20$','Réconfort et gourmandise chocolatée.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_56.png','Une ganache de cacao pur fondue dans un lait soyeux, délicatement sucrée pour une expérience gourmande incomparable.')"><span class="card-icon">🍫</span><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Thé vert','20$','L\'élégance d\'une infusion millénaire.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_43_03.png','Une infusion délicate de feuilles de thé vert sélectionnées, offrant des notes végétales et une finale pure en bouche.')"><span class="card-icon">🍵</span><h3>Thé vert</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Expresso','20$','L\'essence même du café pour un réveil intense.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/espresso.png','Un shot de caféine pur extrait sous haute pression à partir de nos grains torréfiés maison, pour un arôme puissant.')"><span class="card-icon">☕</span><h3>Expresso</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Macchiato','20$','Le mariage parfait entre force et douceur.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/macchiato.png','Une base d\'expresso corsé marquée d\'une fine couche de mousse de lait onctueuse pour une dégustation équilibrée.')"><span class="card-icon">☕</span><h3>Macchiato</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Cappuccino','20$','L\'icône italienne par excellence.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_29_57.png','Un tiers d\'expresso, un tiers de lait chaud et un tiers de mousse de lait aérienne pour un plaisir tout en légèreté.')"><span class="card-icon">☕</span><h3>Cappuccino</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openModal('Thé Matcha','20$','Une boisson zen aux multiples vertus.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_40_35.png','Poudre de thé vert japonais de haute qualité fouettée dans une eau pure à température contrôlée pour une texture veloutée.')"><span class="card-icon">🍵</span><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
         </div>
 
         <h3 class="sub-category">Desserts — 25$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Donut chocolat','25$','Le plaisir régressif incontournable.','img_donut_chocolat','Une pâte levée moelleuse enrobée d\'un glaçage fondant au chocolat noir intense et éclats gourmands.')"><span class="card-icon">🍩</span><h3>Donut chocolat</h3><p class="price-tag">25$</p></div>
-            <div class="card" onclick="openModal('Donut fraise','25$','Une touche de fraîcheur acidulée.','img_donut_fraise','Un beignet aérien nappé d\'un coulis de fraises fraîches pour une douceur fruitée en fin de repas.')"><span class="card-icon">🍩</span><h3>Donut fraise</h3><p class="price-tag">25$</p></div>
-            <div class="card" onclick="openModal('Cheesecake','25$','L\'onctuosité new-yorkaise à Los Santos.','img_cheesecake','Une crème de fromage frais onctueuse sur un biscuit croustillant au beurre noisette, parfumée à la vanille de Bourbon.')"><span class="card-icon">🍰</span><h3>Cheesecake</h3><p class="price-tag">25$</p></div>
-            <div class="card" onclick="openModal('Cookies','25$','Le croquant allié au fondant.','img_cookies','De généreux biscuits aux pépites de chocolat fondu, croustillants sur les bords et tendres au cœur, préparés chaque matin.')"><span class="card-icon">🍪</span><h3>Cookies</h3><p class="price-tag">25$</p></div>
+            <div class="card" onclick="openModal('Donut chocolat','25$','Le plaisir régressif incontournable.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_36.png','Une pâte levée moelleuse enrobée d\'un glaçage fondant au chocolat noir intense et éclats gourmands.')"><span class="card-icon">🍩</span><h3>Donut chocolat</h3><p class="price-tag">25$</p></div>
+            <div class="card" onclick="openModal('Donut fraise','25$','Une touche de fraîcheur acidulée.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_32.png','Un beignet aérien nappé d\'un coulis de fraises fraîches pour une douceur fruitée en fin de repas.')"><span class="card-icon">🍩</span><h3>Donut fraise</h3><p class="price-tag">25$</p></div>
+            <div class="card" onclick="openModal('Cheesecake','25$','L\'onctuosité new-yorkaise à Los Santos.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_29.png','Une crème de fromage frais onctueuse sur un biscuit croustillant au beurre noisette, parfumée à la vanille de Bourbon.')"><span class="card-icon">🍰</span><h3>Cheesecake</h3><p class="price-tag">25$</p></div>
+            <div class="card" onclick="openModal('Cookies','25$','Le croquant allié au fondant.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_25.png','De généreux biscuits aux pépites de chocolat fondu, croustillants sur les bords et tendres au cœur, préparés chaque matin.')"><span class="card-icon">🍪</span><h3>Cookies</h3><p class="price-tag">25$</p></div>
         </div>
 
         <h3 class="sub-category">Cocktails — 35$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Cosmo','35$','L\'élégance urbaine dans un verre.','img_cosmo','Un mélange raffiné de vodka premium, de triple sec et de jus de cranberry, twisté d\'un zeste de citron vert frais.')"><span class="card-icon">🍸</span><h3>Cosmo</h3><p class="price-tag">35$</p></div>
-            <div class="card" onclick="openModal('Aviation','35$','Un voyage sensoriel aux notes florales.','img_aviation','Une alliance subtile de gin botanique, de crème de violette et de liqueur de marasquin pour un cocktail iconique.')"><span class="card-icon">🍹</span><h3>Aviation</h3><p class="price-tag">35$</p></div>
+            <div class="card" onclick="openModal('Cosmo','35$','L\'élégance urbaine dans un verre.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_22.png','Un mélange raffiné de vodka premium, de triple sec et de jus de cranberry, twisté d\'un zeste de citron vert frais.')"><span class="card-icon">🍸</span><h3>Cosmo</h3><p class="price-tag">35$</p></div>
+            <div class="card" onclick="openModal('Aviation','35$','Un voyage sensoriel aux notes florales.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_57_35.png','Une alliance subtile de gin botanique, de crème de violette et de liqueur de marasquin pour un cocktail iconique.')"><span class="card-icon">🍹</span><h3>Aviation</h3><p class="price-tag">35$</p></div>
         </div>
     </div>
 </div>
 
 <!-- ÉQUIPE -->
-<div id="equipe" class="tab-content" style="display: none;">
+<div id="equipe" class="tab-content">
     <div class="container">
         <h2 class="section-title">L'Équipe</h2>
         <div class="team-grid">
@@ -231,7 +194,7 @@
 </div>
 
 <!-- CONTACT -->
-<div id="contact" class="tab-content" style="display: none;">
+<div id="contact" class="tab-content">
     <div class="container" style="display:flex;justify-content:center">
         <div class="contact-box">
             <h2 class="section-title">Contact</h2>
@@ -268,134 +231,7 @@
     </div>
 </div>
 
-<!-- BOUTON ADMIN -->
-<button id="adminBtn" onclick="openAdmin()" title="Admin">⚙️</button>
-
-<!-- PANNEAU ADMIN -->
-<div id="adminOverlay" class="open">
-    <div id="adminPanel">
-
-        <div id="loginBox" style="display: none;" data-dashlane-rid="6a662a106c794e91" data-dashlane-classification="login">
-            <h3>🔐 Accès Admin</h3>
-            <p style="color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:20px">Entrez le mot de passe</p>
-            <input type="password" id="loginInput" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkLogin()" data-dashlane-rid="b290717d7a17e304" data-dashlane-classification="password" data-dashlane-filled-by-user="true" data-kwimpalastatus="dead">
-            <br><br>
-            <p id="loginError">❌ Mot de passe incorrect</p>
-            <button id="loginSubmit" onclick="checkLogin()" data-dashlane-label="true" data-dashlane-rid="f78c2b866519faa5" data-dashlane-classification="action,login" data-kwimpalastatus="dead">Entrer</button>
-            <br><br>
-            <button class="btn-close-admin" onclick="closeAdmin()" data-dashlane-label="true" data-dashlane-rid="65e15c1419282138" data-dashlane-classification="other">Annuler</button>
-        </div>
-
-        <div id="adminForm" style="display: block;" data-dashlane-rid="3d0c4740b7fc52a6" data-dashlane-classification="other">
-            <h2>🖼️ Gestion des images</h2>
-            <p class="hint">Colle le lien GitHub (blob ou raw), le site convertit automatiquement. Ensuite clique <strong style="color:#6fcf6f">Exporter</strong> et upload le fichier sur GitHub.</p>
-
-            <div class="admin-section-title">Formules</div>
-            <div class="admin-row"><label>Menu Gourmand</label><input id="img_menu_gourmand" placeholder="https://github.com/gzd3100/Bean-Machine/blob/main/..." data-dashlane-rid="ef8300a182573fd7" data-dashlane-classification="other"></div>
-            <div class="admin-row"><label>Menu Classique</label><input id="img_menu_classique" placeholder="https://github.com/..." data-dashlane-rid="d90be79d0d10a003" data-dashlane-classification="other"></div>
-            <div class="admin-row"><label>Menu Start</label><input id="img_menu_start" placeholder="https://github.com/..." data-dashlane-rid="e1daa3d2ba4bc554" data-dashlane-classification="other"></div>
-
-            <div class="admin-section-title">Nourritures</div>
-            <div class="admin-row"><label>Ragoût de boeuf</label><input id="img_ragout" placeholder="https://github.com/..." data-dashlane-rid="010c4397cd1cad71" data-dashlane-classification="other"></div>
-            <div class="admin-row"><label>Soupe de légumes</label><input id="img_soupe_legumes" placeholder="https://github.com/..." data-dashlane-rid="ffecd1481e72de38" data-dashlane-classification="other"></div>
-            <div class="admin-row"><label>Soupe de tomate</label><input id="img_soupe_tomate" placeholder="https://github.com/..." data-dashlane-rid="d2fb9e06c90745fb" data-dashlane-classification="other"></div>
-
-            <div class="admin-section-title">Boissons fraîches</div>
-            <div class="admin-row"><label>Smoothie fraise</label><input id="img_smoothie_fraise" placeholder="https://github.com/..." data-dashlane-rid="4daabee9d4426b22" data-dashlane-classification="other"></div>
-            <div class="admin-row"><label>Smoothie banane</label><input id="img_smoothie_banane" placeholder="https://github.com/..." data-dashlane-rid="fbc56fce7f0156c7" data-dashlane-classification="other"></div>
-            <div class="admin-row"><label>Jus d'orange</label><input id="img_jus_orange" placeholder="https://github.com/..." data-dashlane-rid="996d3dd3068d6d37" data-dashlane-classification="other"></div>
-            <div class="admin-row"><label>Jus d'ananas</label><input id="img_jus_ananas" placeholder="https://github.com/..." data-dashlane-rid="7ea20f04b7b4a34f" data-dashlane-classification="other"></div>
-
-            <div class="admin-section-title">Boissons chaudes</div>
-            <div class="admin-row"><label>Chocolat chaud</label><input id="img_chocolat_chaud" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Thé vert</label><input id="img_the_vert" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Expresso</label><input id="img_expresso" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Macchiato</label><input id="img_macchiato" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Cappuccino</label><input id="img_cappuccino" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Thé Matcha</label><input id="img_the_matcha" placeholder="https://github.com/..."></div>
-
-            <div class="admin-section-title">Desserts</div>
-            <div class="admin-row"><label>Donut chocolat</label><input id="img_donut_chocolat" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Donut fraise</label><input id="img_donut_fraise" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Cheesecake</label><input id="img_cheesecake" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Cookies</label><input id="img_cookies" placeholder="https://github.com/..."></div>
-
-            <div class="admin-section-title">Cocktails</div>
-            <div class="admin-row"><label>Cosmo</label><input id="img_cosmo" placeholder="https://github.com/..."></div>
-            <div class="admin-row"><label>Aviation</label><input id="img_aviation" placeholder="https://github.com/..."></div>
-
-            <div class="admin-actions">
-                <button class="btn-export" onclick="exportCode()">📦 Exporter index.html</button>
-                <button class="btn-close-admin" onclick="closeAdmin()">Fermer</button>
-            </div>
-
-            <div id="exportBox" style="display: none;">
-                <p>✅ Ton fichier est prêt ! Clique pour télécharger et upload-le sur GitHub.</p>
-                <button class="btn-copy" onclick="downloadExport()">⬇️ Télécharger index.html</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="saved-toast" id="toast">✅ Exporté !</div>
-
 <script>
-const ADMIN_PASSWORD = 'beanmachine';
-
-const FALLBACK = {
-    img_menu_gourmand:'https://picsum.photos/seed/gourmand/800/450',
-    img_menu_classique:'https://picsum.photos/seed/classique/800/450',
-    img_menu_start:'https://picsum.photos/seed/start/800/450',
-    img_ragout:'https://picsum.photos/seed/ragout/800/450',
-    img_soupe_legumes:'https://picsum.photos/seed/legumes/800/450',
-    img_soupe_tomate:'https://picsum.photos/seed/tomate/800/450',
-    img_smoothie_fraise:'https://picsum.photos/seed/fraise/800/450',
-    img_smoothie_banane:'https://picsum.photos/seed/banane/800/450',
-    img_jus_orange:'https://picsum.photos/seed/orange/800/450',
-    img_jus_ananas:'https://picsum.photos/seed/ananas/800/450',
-    img_chocolat_chaud:'https://picsum.photos/seed/choco/800/450',
-    img_the_vert:'https://picsum.photos/seed/thevert/800/450',
-    img_expresso:'https://picsum.photos/seed/expresso/800/450',
-    img_macchiato:'https://picsum.photos/seed/macchiato/800/450',
-    img_cappuccino:'https://picsum.photos/seed/cappuccino/800/450',
-    img_the_matcha:'https://picsum.photos/seed/matcha/800/450',
-    img_donut_chocolat:'https://picsum.photos/seed/donut1/800/450',
-    img_donut_fraise:'https://picsum.photos/seed/donut2/800/450',
-    img_cheesecake:'https://picsum.photos/seed/cheesecake/800/450',
-    img_cookies:'https://picsum.photos/seed/cookies/800/450',
-    img_cosmo:'https://picsum.photos/seed/cosmo/800/450',
-    img_aviation:'https://picsum.photos/seed/aviation/800/450',
-};
-
-function toRawUrl(url) {
-    if (!url) return '';
-    url = url.trim();
-    if (url.includes('raw.githubusercontent.com')) return url;
-    return url.replace('https://github.com/','https://raw.githubusercontent.com/').replace('/blob/','/' );
-}
-
-function getImages() {
-    const data = {};
-    Object.keys(FALLBACK).forEach(key => {
-        const input = document.getElementById(key);
-        if (input && input.value.trim()) data[key] = toRawUrl(input.value.trim());
-    });
-    return data;
-}
-
-function getImg(key) {
-    const imgs = window._exportedImgs || {};
-    return imgs[key] || FALLBACK[key];
-}
-
-function loadSaved() {
-    const saved = JSON.parse(localStorage.getItem('bm_images') || '{}');
-    Object.keys(FALLBACK).forEach(key => {
-        const input = document.getElementById(key);
-        if (input && saved[key]) input.value = saved[key];
-    });
-}
-
 function showTab(id) {
     document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.style.display='none'; });
     const target = document.getElementById(id);
@@ -408,7 +244,7 @@ function showTab(id) {
     window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function openModal(title, price, desc, imgKey, recipe) {
+function openModal(title, price, desc, imgUrl, recipe) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalPrice').textContent = price;
     document.getElementById('modalDesc').textContent  = desc;
@@ -416,10 +252,9 @@ function openModal(title, price, desc, imgKey, recipe) {
     const img = document.getElementById('modalImg');
     const sk  = document.getElementById('imgSkeleton');
     img.classList.remove('loaded'); img.src=''; sk.style.display='flex';
-    const src = getImg(imgKey);
     img.onload  = () => { sk.style.display='none'; img.classList.add('loaded'); };
-    img.onerror = () => { img.onerror=null; img.src=FALLBACK[imgKey]; };
-    img.src = src;
+    img.onerror = () => { sk.innerHTML='<span style="font-size:3rem;opacity:0.3">🍽️</span>'; };
+    img.src = imgUrl;
     const overlay = document.getElementById('mainModal');
     overlay.classList.add('opening');
     document.body.style.overflow='hidden';
@@ -434,97 +269,7 @@ function closeModal() {
 }
 
 document.getElementById('mainModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeModal(); closeAdmin(); } });
-
-function openAdmin() {
-    document.getElementById('loginBox').style.display='block';
-    document.getElementById('adminForm').style.display='none';
-    document.getElementById('loginInput').value='';
-    document.getElementById('loginError').textContent='';
-    document.getElementById('exportBox').style.display='none';
-    document.getElementById('adminOverlay').classList.add('open');
-    setTimeout(() => document.getElementById('loginInput').focus(), 100);
-}
-function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
-function checkLogin() {
-    if (document.getElementById('loginInput').value === ADMIN_PASSWORD) {
-        document.getElementById('loginBox').style.display='none';
-        document.getElementById('adminForm').style.display='block';
-        loadSaved();
-    } else {
-        document.getElementById('loginError').textContent='❌ Mot de passe incorrect';
-        document.getElementById('loginInput').value='';
-    }
-}
-document.getElementById('adminOverlay').addEventListener('click', function(e){ if(e.target===this) closeAdmin(); });
-
-// ── EXPORT ───────────────────────────────────────────────────
-let _exportedCode = '';
-
-function exportCode() {
-    const imgs = getImages();
-    // Sauvegarde aussi en localStorage pour la session
-    localStorage.setItem('bm_images', JSON.stringify(imgs));
-    window._exportedImgs = imgs;
-
-    // On génère le JS des images dans le code exporté
-    const imgsJson = JSON.stringify(imgs, null, 4);
-
-    // On récupère le HTML actuel et on remplace le bloc FALLBACK + _exportedImgs
-    const inject = `
-    
-    `;
-
-    // On prend tout le HTML de la page et on injecte les URLs avant la fermeture body
-    let html = document.documentElement.outerHTML;
-    // On remplace le placeholder window._exportedImgs s'il existe déjà
-    html = html.replace(/\/\/ ── Images configurées via l'admin ──[\s\S]*?};/, '');
-    // On injecte juste avant <script>
-    // ── Images configurées via l'admin ──
-    window._exportedImgs = {
-    "img_menu_gourmand": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_08.png",
-    "img_menu_classique": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_13.png",
-    "img_menu_start": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_53.png",
-    "img_ragout": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ragout_boeuf.png",
-    "img_soupe_legumes": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_legume.png",
-    "img_soupe_tomate": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_tomate.png",
-    "img_smoothie_fraise": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/smoothie_fraise.png",
-    "img_smoothie_banane": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_28_59.png",
-    "img_jus_orange": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_29_41.png",
-    "img_jus_ananas": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_03.png",
-    "img_chocolat_chaud": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_56.png",
-    "img_the_vert": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_43_03.png",
-    "img_expresso": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/espresso.png",
-    "img_macchiato": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/macchiato.png",
-    "img_cappuccino": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_29_57.png",
-    "img_the_matcha": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_40_35.png",
-    "img_donut_chocolat": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_36.png",
-    "img_donut_fraise": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_32.png",
-    "img_cheesecake": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_29.png",
-    "img_cookies": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_25.png",
-    "img_cosmo": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_22.png",
-    "img_aviation": "https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_57_35.png"
-};
-    </script></body>
-    html = html.replace('</body>', `<script>${inject}<\/script></body>`);
-
-    _exportedCode = '<!DOCTYPE html>\n' + html;
-
-    document.getElementById('exportBox').style.display='block';
-    document.getElementById('exportBox').scrollIntoView({behavior:'smooth'});
-}
-
-function downloadExport() {
-    const blob = new Blob([_exportedCode], {type:'text/html'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'index.html';
-    a.click();
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
-}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 </script>
-
-
-<div id="give-freely-root-ejkiikneibegknkgimmihdpcbcedgmpo" class="give-freely-root" data-extension-id="ejkiikneibegknkgimmihdpcbcedgmpo" data-extension-name="Volume Booster" style="display: block;"></div><script id="define-custom-element-wtd-root" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-root&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script><script id="define-custom-element-wtd-div" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-div&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script><wtd-div id="wanteeedContainer" style="position: fixed; display: block; top: 0px; right: 0px; z-index: 2147483647;"></wtd-div><script id="define-custom-element-wtd-root" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-root&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script><wtd-root id="wtd-update-screen"></wtd-root><script id="define-custom-element-wtd-root" src="chrome-extension://emnoomldgleagdjapdeckpmebokijail/src/scripts/injected/defineCustomElementsInjected.js" data-params="{&quot;elementName&quot;:&quot;wtd-root&quot;,&quot;eventName&quot;:&quot;customElements.defined&quot;,&quot;isShadowRoot&quot;:true,&quot;enableEs5ShimmedHandling&quot;:true}"></script></body></html>
+</body>
+</html>

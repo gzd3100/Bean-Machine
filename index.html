@@ -4,124 +4,172 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Machine | Site Officiel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #4e342a; 
+            --primary: #4e342a;
             --accent: #b08d57;
             --success: #2e7d32;
             --dark: #0a0a0a;
             --bg-gradient: radial-gradient(circle at center, #1a120f 0%, #0a0a0a 100%);
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(176, 141, 87, 0.2);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass: rgba(255,255,255,0.03);
+            --glass-border: rgba(176,141,87,0.2);
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Poppins',sans-serif; background:var(--dark); color:#fff; overflow-x:hidden; }
 
         /* NAV */
         nav {
-            position: fixed; top: 0; width: 100%; height: 80px;
-            background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(15px);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; z-index: 1000; border-bottom: 1px solid var(--glass-border);
+            position:fixed; top:0; width:100%; height:80px;
+            background:rgba(10,10,10,0.85); backdrop-filter:blur(15px);
+            display:flex; justify-content:space-between; align-items:center;
+            padding:0 5%; z-index:1000; border-bottom:1px solid var(--glass-border);
         }
-        .nav-left { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .logo-nav { height: 55px; width: auto; object-fit: contain; }
-        .nav-left h1 { font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 1.2rem; letter-spacing: 1px; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: var(--transition); }
-        .nav-links a:hover, .nav-links a.active-link { color: var(--accent); }
+        .nav-left { display:flex; align-items:center; gap:12px; cursor:pointer; }
+        .logo-nav { height:55px; width:auto; object-fit:contain; }
+        .nav-left h1 { font-family:'Oswald',sans-serif; color:var(--accent); font-size:1.2rem; letter-spacing:1px; }
+        .nav-links { display:flex; gap:20px; list-style:none; }
+        .nav-links a { text-decoration:none; color:rgba(255,255,255,0.6); font-size:0.8rem; text-transform:uppercase; font-weight:600; cursor:pointer; transition:var(--transition); }
+        .nav-links a:hover, .nav-links a.active-link { color:var(--accent); }
 
-        /* STRUCTURE DES PAGES */
-        .tab-content { 
-            display: none; 
-            min-height: 100vh; 
-            background: var(--bg-gradient); 
-            padding: 120px 20px 60px; 
+        /* PAGES */
+        .tab-content { display:none; min-height:100vh; background:var(--bg-gradient); padding:120px 20px 60px; }
+        #accueil, #formules, #equipe, #contact { display:none; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+        .tab-content.active { display:flex !important; animation:fadeIn 0.5s ease-out; }
+        #carte.active { display:block !important; }
+
+        @keyframes fadeIn { from{opacity:0;transform:translateY(15px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+        @keyframes spin { to{transform:rotate(360deg)} }
+
+        /* LAYOUT */
+        .container { width:100%; max-width:1200px; margin:0 auto; }
+        .section-title { font-family:'Oswald',sans-serif; font-size:clamp(2.5rem,6vw,4.5rem); color:var(--accent); margin-bottom:50px; text-transform:uppercase; }
+        .sub-category { font-family:'Oswald',sans-serif; font-size:2rem; color:#fff; border-left:4px solid var(--accent); padding-left:15px; margin:50px 0 30px; text-align:left; }
+
+        /* CARDS */
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; width:100%; }
+        .card {
+            background:var(--glass); padding:50px 25px; border-radius:15px;
+            border:1px solid var(--glass-border); text-align:center;
+            cursor:pointer; transition:var(--transition); backdrop-filter:blur(5px);
+            position:relative; overflow:hidden;
         }
+        .card:hover { transform:translateY(-8px) scale(1.02); background:rgba(176,141,87,0.08); border-color:var(--accent); box-shadow:0 20px 40px rgba(0,0,0,0.5); }
+        .card h3 { font-family:'Oswald',sans-serif; font-size:2.2rem; margin-bottom:10px; }
+        .price-tag { color:var(--accent); font-weight:bold; font-size:1.6rem; }
+        .card-icon { font-size:2.2rem; margin-bottom:14px; display:block; }
 
-        /* CENTRAGE POUR FORMULES, EQUIPE, CONTACT */
-        #formules, #equipe, #contact, #accueil {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        /* HERO */
+        .hero {
+            height:100vh; width:100%;
+            background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),
+                        url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp') center/cover no-repeat;
+            display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:20px;
         }
+        .hero img { width:280px; margin-bottom:20px; animation:float 5s ease-in-out infinite; }
+        .hero h2 { font-family:'Oswald',sans-serif; font-size:clamp(3rem,8vw,5rem); color:var(--accent); margin:10px 0; letter-spacing:2px; }
+        .hero p { font-size:clamp(1rem,2.5vw,1.5rem); letter-spacing:3px; font-weight:300; }
+        .btn-hero { margin-top:40px; padding:20px 50px; background:var(--accent); border:none; color:#fff; font-weight:bold; text-transform:uppercase; cursor:pointer; border-radius:5px; font-family:'Oswald',sans-serif; font-size:1.2rem; transition:var(--transition); }
+        .btn-hero:hover { background:#8a6d43; transform:scale(1.05); }
 
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; }
+        /* FORMULES */
+        .formule-card { background:var(--glass); padding:60px 25px; border-radius:15px; border:1px solid var(--glass-border); text-align:center; cursor:pointer; transition:var(--transition); backdrop-filter:blur(5px); }
+        .formule-card:hover { transform:translateY(-8px); background:rgba(176,141,87,0.1); border-color:var(--accent); }
+        .formule-card h3 { font-family:'Oswald',sans-serif; font-size:2.2rem; margin-bottom:10px; }
 
-        .section-title { 
-            font-family: 'Oswald', sans-serif; 
-            font-size: 4.5rem; 
-            color: var(--accent); 
-            margin-bottom: 50px; 
-            text-transform: uppercase; 
-        }
-
-        .sub-category { font-family: 'Oswald', sans-serif; font-size: 2rem; color: #fff; border-left: 4px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-align: left; }
-
-        /* GRID & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; }
-        .card { 
-            background: var(--glass); padding: 60px 25px; border-radius: 15px; border: 1px solid var(--glass-border);
-            text-align: center; cursor: pointer; transition: var(--transition); backdrop-filter: blur(5px);
-        }
-        .card:hover { transform: translateY(-8px); background: rgba(176, 141, 87, 0.1); border-color: var(--accent); }
-        .card h3 { font-family: 'Oswald', sans-serif; font-size: 2.2rem; margin-bottom: 10px; }
-        .price-tag { color: var(--accent); font-weight: bold; font-size: 1.6rem; }
-
-        /* MODALE */
-        .modal {
-            display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.96); align-items: center; justify-content: center; backdrop-filter: blur(12px);
-        }
-        .modal-content { 
-            background: #0f0f0f; padding: 45px; border-radius: 25px; max-width: 600px; width: 90%; 
-            position: relative; border: 1px solid var(--accent); text-align: center;
-        }
-        .close { position: absolute; top: 20px; right: 25px; font-size: 40px; cursor: pointer; color: var(--accent); }
-        .modal-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--glass-border); }
-        .modal-recipe-box { text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--accent); }
-        .badge-fresh { background: var(--success); color: white; padding: 14px; border-radius: 8px; font-weight: bold; margin-top: 25px; display: inline-block; width: 100%; letter-spacing: 1px; }
-
-        /* EQUIPE */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%; }
-        .team-card { 
-            display: flex; align-items: center; gap: 25px; background: var(--glass); 
-            padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border); text-align: left;
-        }
-        .team-img { width: 90px; height: 90px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-family: 'Oswald'; color: var(--accent); border: 2px solid var(--accent); }
-        .team-card h3 { font-family: 'Oswald', sans-serif; font-size: 2rem; }
+        /* ÉQUIPE */
+        .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; width:100%; }
+        .team-card { display:flex; align-items:center; gap:25px; background:var(--glass); padding:40px; border-radius:20px; border:1px solid var(--glass-border); text-align:left; }
+        .team-avatar { width:90px; height:90px; min-width:90px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-family:'Oswald',sans-serif; color:var(--accent); border:2px solid var(--accent); }
+        .team-card h3 { font-family:'Oswald',sans-serif; font-size:1.8rem; }
+        .team-role { color:var(--accent); margin-top:4px; }
 
         /* CONTACT */
-        .contact-box { background: var(--glass); padding: 80px 40px; border-radius: 25px; border: 1px solid var(--glass-border); width: 100%; max-width: 850px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .contact-box { background:var(--glass); padding:80px 40px; border-radius:25px; border:1px solid var(--glass-border); width:100%; max-width:850px; display:flex; flex-direction:column; align-items:center; }
+        .contact-phones { background:rgba(176,141,87,0.15); padding:40px; border-radius:20px; border:1px solid var(--accent); width:100%; }
+        .contact-phone { font-size:clamp(1.4rem,3vw,2rem); color:var(--accent); margin-bottom:20px; }
+        .contact-phone:last-child { margin-bottom:0; }
+        .contact-address { font-size:clamp(1.2rem,3vw,2.2rem); margin-bottom:35px; font-weight:300; }
 
-        /* ACCUEIL */
-        .hero {
-            height: 100vh; width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=70&w=1600&auto=format&fm=webp');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        /* MODAL OVERLAY */
+        .modal-overlay {
+            display:none; position:fixed; z-index:2000;
+            top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0); align-items:center; justify-content:center;
+            transition:background 0.4s ease, backdrop-filter 0.4s ease;
         }
-        .hero img { width: 280px; margin-bottom: 20px; animation: float 5s ease-in-out infinite; }
-        .hero h2 { font-family: 'Oswald', sans-serif; font-size: 5rem; color: var(--accent); margin: 10px 0; letter-spacing: 2px; }
-        .btn-hero { margin-top: 40px; padding: 20px 50px; background: var(--accent); border: none; color: #fff; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 5px; font-family: 'Oswald', sans-serif; font-size: 1.2rem; transition: var(--transition); }
-        .btn-hero:hover { background: #8a6d43; transform: scale(1.05); }
+        .modal-overlay.opening { display:flex; }
+        .modal-overlay.open { background:rgba(0,0,0,0.93); backdrop-filter:blur(14px); }
 
-        .active { display: flex !important; animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        /* MODAL PANEL */
+        .modal-panel {
+            background:#0d0d0d; border-radius:25px; max-width:640px; width:92%;
+            position:relative; border:1px solid rgba(176,141,87,0.4);
+            overflow:hidden; max-height:92vh; overflow-y:auto;
+            transform:scale(0.85) translateY(40px); opacity:0;
+            transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s ease;
+        }
+        .modal-overlay.open .modal-panel { transform:scale(1) translateY(0); opacity:1; }
+
+        .modal-close {
+            position:absolute; top:14px; right:14px; z-index:10;
+            width:36px; height:36px; border-radius:50%;
+            background:rgba(0,0,0,0.6); border:1px solid rgba(176,141,87,0.3);
+            color:var(--accent); font-size:18px; cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            transition:var(--transition);
+        }
+        .modal-close:hover { background:rgba(176,141,87,0.2); transform:rotate(90deg); border-color:var(--accent); }
+
+        /* IMAGE ZONE */
+        .modal-img-wrapper { width:100%; height:300px; position:relative; overflow:hidden; background:#111; }
+        .modal-img-skeleton {
+            position:absolute; inset:0;
+            background:linear-gradient(90deg,#151515 25%,#252525 50%,#151515 75%);
+            background-size:200% 100%; animation:shimmer 1.4s infinite;
+            display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px;
+        }
+        .skeleton-spinner { width:44px; height:44px; border:3px solid rgba(176,141,87,0.15); border-top-color:var(--accent); border-radius:50%; animation:spin 0.75s linear infinite; }
+        .skeleton-text { color:rgba(176,141,87,0.55); font-size:0.82rem; letter-spacing:1.5px; text-transform:uppercase; }
+        .modal-img { width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 0.6s ease; position:absolute; inset:0; }
+        .modal-img.loaded { opacity:1; }
+        .modal-img-gradient { position:absolute; bottom:0; left:0; right:0; height:90px; background:linear-gradient(transparent,#0d0d0d); pointer-events:none; z-index:1; }
+
+        /* MODAL BODY */
+        .modal-body { padding:26px 32px 32px; }
+        .modal-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; gap:12px; }
+        .modal-title { font-family:'Oswald',sans-serif; color:var(--accent); font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.1; }
+        .modal-price-badge { background:var(--accent); color:#fff; font-family:'Oswald',sans-serif; font-size:1.4rem; padding:6px 18px; border-radius:8px; white-space:nowrap; flex-shrink:0; }
+        .modal-desc { font-size:1rem; line-height:1.8; color:rgba(255,255,255,0.65); margin-bottom:20px; }
+        .modal-recipe-box { background:rgba(176,141,87,0.07); padding:18px 22px; border-radius:12px; margin-bottom:22px; border-left:3px solid var(--accent); line-height:2; font-size:0.95rem; color:rgba(255,255,255,0.82); }
+        .badge-fresh { background:var(--success); color:white; padding:13px; border-radius:8px; font-weight:bold; display:block; width:100%; letter-spacing:1px; text-align:center; font-size:0.88rem; }
+
+        /* RESPONSIVE */
+        @media (max-width:680px) {
+            nav { padding:0 4%; }
+            .nav-left h1 { display:none; }
+            .nav-links { gap:12px; }
+            .nav-links a { font-size:0.7rem; }
+            .hero img { width:180px; }
+            .modal-panel { border-radius:18px; }
+            .modal-body { padding:18px; }
+            .modal-img-wrapper, .modal-img { height:220px; }
+        }
     </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
     <div class="nav-left" onclick="showTab('accueil')">
-        <img src="logo.webp" alt="Logo" class="logo-nav">
+        <img src="logo.webp" alt="Bean Machine" class="logo-nav" onerror="this.style.display='none'">
         <h1>BEAN MACHINE</h1>
     </div>
     <ul class="nav-links">
@@ -133,187 +181,322 @@
     </ul>
 </nav>
 
+<!-- ACCUEIL -->
 <div id="accueil" class="tab-content active" style="padding:0;">
     <section class="hero">
-        <img src="logo.webp" alt="Logo">
+        <img src="logo.webp" alt="Logo Bean Machine" onerror="this.style.display='none'">
         <h2>BEAN MACHINE</h2>
-        <p style="font-size: 1.5rem; letter-spacing: 3px; font-weight: 300;">L'excellence du café à Los Santos</p>
+        <p>L'excellence du café à Los Santos</p>
         <button class="btn-hero" onclick="showTab('formules')">Découvrir le menu</button>
     </section>
 </div>
 
+<!-- FORMULES -->
 <div id="formules" class="tab-content">
     <div class="container">
         <h2 class="section-title">Nos Formules</h2>
         <div class="grid">
-            <div class="card" onclick="openModal('Menu Gourmand', '55$', 'L\'expérience complète Bean Machine.', 'https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/image_31c5ea.png', 'Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche\n- Un dessert OU une boisson chaude')">
-                <h3>Menu Gourmand</h3>
-                <p class="price-tag">55$</p>
+            <div class="formule-card" onclick="openFormuleModal('Menu Gourmand','55$','L\'expérience complète Bean Machine.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/image_31c5ea.png','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche\n- Un dessert OU une boisson chaude')">
+                <h3>Menu Gourmand</h3><p class="price-tag">55$</p>
             </div>
-
-            <div class="card" onclick="openModal('Menu Classique', '40$', 'L\'essentiel pour un bon repas.', 'https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/menu_classique.png', 'Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche')">
-                <h3>Menu Classique</h3>
-                <p class="price-tag">40$</p>
+            <div class="formule-card" onclick="openFormuleModal('Menu Classique','40$','L\'essentiel pour un bon repas.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/menu_classique.png','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche')">
+                <h3>Menu Classique</h3><p class="price-tag">40$</p>
             </div>
-
-            <div class="card" onclick="openModal('Menu Start', '35$', 'Pour un réveil ou un goûter réussi.', 'https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/menu_start.png?v=3', 'Ce menu contient :\n- Un dessert\n- Une boisson chaude')">
-                <h3>Menu Start</h3>
-                <p class="price-tag">35$</p>
+            <div class="formule-card" onclick="openFormuleModal('Menu Start','35$','Pour un réveil ou un goûter réussi.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/menu_start.png?v=3','Ce menu contient :\n- Un dessert\n- Une boisson chaude')">
+                <h3>Menu Start</h3><p class="price-tag">35$</p>
             </div>
         </div>
     </div>
 </div>
 
+<!-- CARTE -->
 <div id="carte" class="tab-content">
     <div class="container">
         <h2 class="section-title">La Carte</h2>
 
         <h3 class="sub-category">Nourritures — 30$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Ragoût de boeuf', '30$', 'Un plat généreux et mijoté lentement pour une viande fondante.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=800&auto=format&fit=crop', 'Sélection de pièces de bœuf braisées longuement dans une réduction de tomates fraîches, accompagnées de carottes fondantes et d\'oignons caramélisés au sel de mer.')"><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p></div>
-            
-            <div class="card" onclick="openModal('Soupe de légumes', '30$', 'Un cocktail de vitamines frais et léger pour un repas sain.', 'https://images.unsplash.com/photo-1547592116-30656e430d9a?q=80&w=800&auto=format&fit=crop', 'Un velouté de saison préparé à partir de légumes du marché, mariant la douceur de la pomme de terre à l\'onctuosité de l\'aubergine et des petits légumes frais.')"><h3>Soupe de légumes</h3><p class="price-tag">30$</p></div>
-            
-            <div class="card" onclick="openModal('Soupe de tomate', '30$', 'Un classique réconfortant aux saveurs ensoleillées.', 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=800&auto=format&fit=crop', 'Une émulsion de tomates mûres infusées à l\'oignon blanc, subtilement assaisonnée pour un équilibre parfait entre acidité et douceur.')"><h3>Soupe de tomate</h3><p class="price-tag">30$</p></div>
+            <div class="card" onclick="openProductModal('Ragoût de boeuf','30$','Un plat généreux et mijoté lentement pour une viande fondante.','Sélection de pièces de bœuf braisées longuement dans une réduction de tomates fraîches, accompagnées de carottes fondantes et d\'oignons caramélisés au sel de mer.')">
+                <span class="card-icon">🥘</span><h3>Ragoût de boeuf</h3><p class="price-tag">30$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Soupe de légumes','30$','Un cocktail de vitamines frais et léger pour un repas sain.','Un velouté de saison préparé à partir de légumes du marché, mariant la douceur de la pomme de terre à l\'onctuosité de l\'aubergine et des petits légumes frais.')">
+                <span class="card-icon">🥦</span><h3>Soupe de légumes</h3><p class="price-tag">30$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Soupe de tomate','30$','Un classique réconfortant aux saveurs ensoleillées.','Une émulsion de tomates mûres infusées à l\'oignon blanc, subtilement assaisonnée pour un équilibre parfait entre acidité et douceur.')">
+                <span class="card-icon">🍅</span><h3>Soupe de tomate</h3><p class="price-tag">30$</p>
+            </div>
         </div>
 
         <h3 class="sub-category">Boissons fraîches — 15$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Smoothie fraise', '15$', 'Une douceur fruitée et rafraîchissante.', 'https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?q=80&w=800&auto=format&fit=crop', 'Des fraises fraîchement cueillies mixées avec une pointe de sucre de canne pour une texture onctueuse servie dans un verre givré.')"><h3>Smoothie fraise</h3><p class="price-tag">15$</p></div>
-            
-            <div class="card" onclick="openModal('Smoothie banane', '15$', 'Onctuosité et énergie dans un seul verre.', 'https://images.unsplash.com/photo-1528498033373-3c6c08e93d79?q=80&w=800&auto=format&fit=crop', 'Une préparation onctueuse à base de bananes mûres sélectionnées, travaillée pour obtenir une crème glacée légère et énergisante.')"><h3>Smoothie banane</h3><p class="price-tag">15$</p></div>
-            
-            <div class="card" onclick="openModal('Jus d’orange', '15$', 'Le classique indispensable pressé minute.', 'https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=800&auto=format&fit=crop', 'Une extraction pure d\'oranges gorgées de soleil, pressées à la demande pour garantir une fraîcheur et une vitalité optimale.')"><h3>Jus d’orange</h3><p class="price-tag">15$</p></div>
-            
-            <div class="card" onclick="openModal('Jus d’ananas', '15$', 'Une touche tropicale acidulée.', 'https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=800&auto=format&fit=crop', 'Un pur jus d\'ananas exotique offrant un équilibre délicat entre sucre naturel et notes acidulées, servi sur lit de glace.')"><h3>Jus d’ananas</h3><p class="price-tag">15$</p></div>
+            <div class="card" onclick="openProductModal('Smoothie fraise','15$','Une douceur fruitée et rafraîchissante.','Des fraises fraîchement cueillies mixées avec une pointe de sucre de canne pour une texture onctueuse servie dans un verre givré.')">
+                <span class="card-icon">🍓</span><h3>Smoothie fraise</h3><p class="price-tag">15$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Smoothie banane','15$','Onctuosité et énergie dans un seul verre.','Une préparation onctueuse à base de bananes mûres sélectionnées, travaillée pour obtenir une crème glacée légère et énergisante.')">
+                <span class="card-icon">🍌</span><h3>Smoothie banane</h3><p class="price-tag">15$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Jus d\'orange','15$','Le classique indispensable pressé minute.','Une extraction pure d\'oranges gorgées de soleil, pressées à la demande pour garantir une fraîcheur et une vitalité optimale.')">
+                <span class="card-icon">🍊</span><h3>Jus d'orange</h3><p class="price-tag">15$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Jus d\'ananas','15$','Une touche tropicale acidulée.','Un pur jus d\'ananas exotique offrant un équilibre délicat entre sucre naturel et notes acidulées, servi sur lit de glace.')">
+                <span class="card-icon">🍍</span><h3>Jus d'ananas</h3><p class="price-tag">15$</p>
+            </div>
         </div>
 
         <h3 class="sub-category">Boissons chaudes — 20$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Chocolat chaud', '20$', 'Réconfort et gourmandise chocolatée.', 'https://images.unsplash.com/photo-1544787210-22bb840c5bcd?q=80&w=800&auto=format&fit=crop', 'Une ganache de cacao pur fondue dans un lait soyeux, délicatement sucrée pour une expérience gourmande incomparable.')"><h3>Chocolat chaud</h3><p class="price-tag">20$</p></div>
-            
-            <div class="card" onclick="openModal('Thé vert', '20$', 'L’élégance d’une infusion millénaire.', 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?q=80&w=800&auto=format&fit=crop', 'Une infusion délicate de feuilles de thé vert sélectionnées, offrant des notes végétales et une finale pure en bouche.')"><h3>Thé vert</h3><p class="price-tag">20$</p></div>
-            
-            <div class="card" onclick="openModal('Expresso', '20$', 'L\'essence même du café pour un réveil intense.', 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=800&auto=format&fit=crop', 'Un shot de caféine pur extrait sous haute pression à partir de nos grains torréfiés maison, pour un arôme puissant et persistant.')"><h3>Expresso</h3><p class="price-tag">20$</p></div>
-            
-            <div class="card" onclick="openModal('Macchiato', '20$', 'Le mariage parfait entre force et douceur.', 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=800&auto=format&fit=crop', 'Une base d\'expresso corsé marquée d\'une fine couche de mousse de lait onctueuse pour une dégustation équilibrée.')"><h3>Macchiato</h3><p class="price-tag">20$</p></div>
-            
-            <div class="card" onclick="openModal('Cappuccino', '20$', 'L\'icône italienne par excellence.', 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=800&auto=format&fit=crop', 'Un tiers d\'expresso, un tiers de lait chaud et un tiers de mousse de lait aérienne pour un plaisir tout en légèreté.')"><h3>Cappuccino</h3><p class="price-tag">20$</p></div>
-            
-            <div class="card" onclick="openModal('Thé Matcha', '20$', 'Une boisson zen aux multiples vertus.', 'https://images.unsplash.com/photo-1582733315328-849999967059?q=80&w=800&auto=format&fit=crop', 'Poudre de thé vert japonais de haute qualité fouettée dans une eau pure à température contrôlée pour une texture veloutée.')"><h3>Thé Matcha</h3><p class="price-tag">20$</p></div>
+            <div class="card" onclick="openProductModal('Chocolat chaud','20$','Réconfort et gourmandise chocolatée.','Une ganache de cacao pur fondue dans un lait soyeux, délicatement sucrée pour une expérience gourmande incomparable.')">
+                <span class="card-icon">🍫</span><h3>Chocolat chaud</h3><p class="price-tag">20$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Thé vert','20$','L\'élégance d\'une infusion millénaire.','Une infusion délicate de feuilles de thé vert sélectionnées, offrant des notes végétales et une finale pure en bouche.')">
+                <span class="card-icon">🍵</span><h3>Thé vert</h3><p class="price-tag">20$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Expresso','20$','L\'essence même du café pour un réveil intense.','Un shot de caféine pur extrait sous haute pression à partir de nos grains torréfiés maison, pour un arôme puissant et persistant.')">
+                <span class="card-icon">☕</span><h3>Expresso</h3><p class="price-tag">20$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Macchiato','20$','Le mariage parfait entre force et douceur.','Une base d\'expresso corsé marquée d\'une fine couche de mousse de lait onctueuse pour une dégustation équilibrée.')">
+                <span class="card-icon">☕</span><h3>Macchiato</h3><p class="price-tag">20$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Cappuccino','20$','L\'icône italienne par excellence.','Un tiers d\'expresso, un tiers de lait chaud et un tiers de mousse de lait aérienne pour un plaisir tout en légèreté.')">
+                <span class="card-icon">☕</span><h3>Cappuccino</h3><p class="price-tag">20$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Thé Matcha','20$','Une boisson zen aux multiples vertus.','Poudre de thé vert japonais de haute qualité fouettée dans une eau pure à température contrôlée pour une texture veloutée.')">
+                <span class="card-icon">🍵</span><h3>Thé Matcha</h3><p class="price-tag">20$</p>
+            </div>
         </div>
 
         <h3 class="sub-category">Desserts — 25$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Donut chocolat', '25$', 'Le plaisir régressif incontournable.', 'https://images.unsplash.com/photo-1527515545081-5db817172677?q=80&w=800&auto=format&fit=crop', 'Une pâte levée moelleuse enrobée d\'un glaçage fondant au chocolat noir intense et éclats gourmands.')"><h3>Donut chocolat</h3><p class="price-tag">25$</p></div>
-            
-            <div class="card" onclick="openModal('Donut fraise', '25$', 'Une touche de fraîcheur acidulée.', 'https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=800&auto=format&fit=crop', 'Un beignet aérien nappé d\'un coulis de fraises fraîches pour une douceur fruitée en fin de repas.')"><h3>Donut fraise</h3><p class="price-tag">25$</p></div>
-            
-            <div class="card" onclick="openModal('Cheesecake', '25$', 'L\'onctuosité new-yorkaise à Los Santos.', 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=800&auto=format&fit=crop', 'Une crème de fromage frais onctueuse sur un biscuit croustillant au beurre noisette, parfumée à la vanille de Bourbon.')"><h3>Cheesecake</h3><p class="price-tag">25$</p></div>
-            
-            <div class="card" onclick="openModal('Cookies', '25$', 'Le croquant allié au fondant.', 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=800&auto=format&fit=crop', 'De généreux biscuits aux pépites de chocolat fondu, croustillants sur les bords et tendres au cœur, préparés chaque matin.')"><h3>Cookies</h3><p class="price-tag">25$</p></div>
+            <div class="card" onclick="openProductModal('Donut chocolat','25$','Le plaisir régressif incontournable.','Une pâte levée moelleuse enrobée d\'un glaçage fondant au chocolat noir intense et éclats gourmands.')">
+                <span class="card-icon">🍩</span><h3>Donut chocolat</h3><p class="price-tag">25$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Donut fraise','25$','Une touche de fraîcheur acidulée.','Un beignet aérien nappé d\'un coulis de fraises fraîches pour une douceur fruitée en fin de repas.')">
+                <span class="card-icon">🍩</span><h3>Donut fraise</h3><p class="price-tag">25$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Cheesecake','25$','L\'onctuosité new-yorkaise à Los Santos.','Une crème de fromage frais onctueuse sur un biscuit croustillant au beurre noisette, parfumée à la vanille de Bourbon.')">
+                <span class="card-icon">🍰</span><h3>Cheesecake</h3><p class="price-tag">25$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Cookies','25$','Le croquant allié au fondant.','De généreux biscuits aux pépites de chocolat fondu, croustillants sur les bords et tendres au cœur, préparés chaque matin.')">
+                <span class="card-icon">🍪</span><h3>Cookies</h3><p class="price-tag">25$</p>
+            </div>
         </div>
 
         <h3 class="sub-category">Cocktails — 35$</h3>
         <div class="grid">
-            <div class="card" onclick="openModal('Cosmo', '35$', 'L\'élégance urbaine dans un verre.', 'https://images.unsplash.com/photo-1533603017205-3b149f3aa991?q=80&w=800&auto=format&fit=crop', 'Un mélange raffiné de vodka premium, de triple sec et de jus de cranberry, twisté d\'un zeste de citron vert frais.')"><h3>Cosmo</h3><p class="price-tag">35$</p></div>
-            
-            <div class="card" onclick="openModal('Aviation', '35$', 'Un voyage sensoriel aux notes florales.', 'https://images.unsplash.com/photo-1634500155683-999364e28821?q=80&w=800&auto=format&fit=crop', 'Une alliance subtile de gin botanique, de crème de violette et de liqueur de marasquin pour un cocktail iconique et équilibré.')"><h3>Aviation</h3><p class="price-tag">35$</p></div>
-        </div>
-    </div>
-</div>
-
-<div id="equipe" class="tab-content">
-    <div class="container">
-        <h2 class="section-title">L'Équipe</h2>
-        <div class="team-grid">
-            <div class="team-card"><div class="team-img">HY</div><div><h3>Hina Yorikawa</h3><p style="color: var(--accent)">Patronne</p></div></div>
-            <div class="team-card"><div class="team-img">DS</div><div><h3>Daichi Sato</h3><p style="color: var(--accent)">Co-Patron</p></div></div>
-            <div class="team-card"><div class="team-img">TK</div><div><h3>Takumi Kurogane</h3><p>Employé</p></div></div>
-            <div class="team-card"><div class="team-img">DW</div><div><h3>Darius Wolff</h3><p>Employé</p></div></div>
-        </div>
-    </div>
-</div>
-
-<div id="contact" class="tab-content">
-    <div class="container" style="display:flex; justify-content:center;">
-        <div class="contact-box">
-            <h2 class="section-title">Contact</h2>
-            <p style="font-size: 2.2rem; margin-bottom: 35px; font-weight: 300;">📍 Place des cubes (À côté de la fourrière)</p>
-            <div style="background: rgba(176,141,87,0.15); padding: 40px; border-radius: 20px; border: 1px solid var(--accent); width: 100%;">
-                <p style="font-size: 2rem; color: var(--accent); margin-bottom: 20px;">📞 Hina : 5568921</p>
-                <p style="font-size: 2rem; color: var(--accent);">📞 Daichi : 5562082</p>
+            <div class="card" onclick="openProductModal('Cosmo','35$','L\'élégance urbaine dans un verre.','Un mélange raffiné de vodka premium, de triple sec et de jus de cranberry, twisté d\'un zeste de citron vert frais.')">
+                <span class="card-icon">🍸</span><h3>Cosmo</h3><p class="price-tag">35$</p>
+            </div>
+            <div class="card" onclick="openProductModal('Aviation','35$','Un voyage sensoriel aux notes florales.','Une alliance subtile de gin botanique, de crème de violette et de liqueur de marasquin pour un cocktail iconique et équilibré.')">
+                <span class="card-icon">🍹</span><h3>Aviation</h3><p class="price-tag">35$</p>
             </div>
         </div>
     </div>
 </div>
 
-<div id="itemModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="font-family: 'Oswald'; color: var(--accent); font-size: 3rem; margin-bottom: 15px;"></h2>
-        <img id="modalImg" src="" class="modal-img">
-        <p id="modalPrice" style="font-weight: bold; font-size: 2.2rem; color: #fff; margin-bottom: 15px;"></p>
-        <p id="modalDesc" style="font-size: 1.2rem; line-height: 1.6; color: #ccc; margin-bottom: 20px;"></p>
-        
-        <div class="modal-recipe-box">
-            <p id="modalRecipe" style="margin-top: 5px; font-weight: 500; line-height: 1.6;"></p>
+<!-- ÉQUIPE -->
+<div id="equipe" class="tab-content">
+    <div class="container">
+        <h2 class="section-title">L'Équipe</h2>
+        <div class="team-grid">
+            <div class="team-card"><div class="team-avatar">HY</div><div><h3>Hina Yorikawa</h3><p class="team-role">Patronne</p></div></div>
+            <div class="team-card"><div class="team-avatar">DS</div><div><h3>Daichi Sato</h3><p class="team-role">Co-Patron</p></div></div>
+            <div class="team-card"><div class="team-avatar">TK</div><div><h3>Takumi Kurogane</h3><p>Employé</p></div></div>
+            <div class="team-card"><div class="team-avatar">DW</div><div><h3>Darius Wolff</h3><p>Employé</p></div></div>
         </div>
+    </div>
+</div>
 
-        <div class="badge-fresh">100% PRODUITS FRAIS - 100% FAIT MAISON</div>
+<!-- CONTACT -->
+<div id="contact" class="tab-content">
+    <div class="container" style="display:flex;justify-content:center;">
+        <div class="contact-box">
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-address">📍 Place des cubes (À côté de la fourrière)</p>
+            <div class="contact-phones">
+                <p class="contact-phone">📞 Hina : 5568921</p>
+                <p class="contact-phone">📞 Daichi : 5562082</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PRODUIT -->
+<div id="productModal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+        <button class="modal-close" onclick="closeModal('productModal')" aria-label="Fermer">✕</button>
+        <div class="modal-img-wrapper">
+            <div class="modal-img-skeleton" id="imgSkeleton">
+                <div class="skeleton-spinner"></div>
+                <span class="skeleton-text">Génération de l'image...</span>
+            </div>
+            <img id="modalProductImg" class="modal-img" src="" alt="">
+            <div class="modal-img-gradient"></div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-header">
+                <h2 class="modal-title" id="productTitle"></h2>
+                <span class="modal-price-badge" id="productPrice"></span>
+            </div>
+            <p class="modal-desc" id="productDesc"></p>
+            <div class="modal-recipe-box" id="productRecipe"></div>
+            <span class="badge-fresh">100% PRODUITS FRAIS — 100% FAIT MAISON</span>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL FORMULE -->
+<div id="formuleModal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+        <button class="modal-close" onclick="closeModal('formuleModal')" aria-label="Fermer">✕</button>
+        <div class="modal-img-wrapper">
+            <img id="formuleImg" class="modal-img loaded" src="" alt="" style="opacity:1;position:relative;height:auto;min-height:200px;">
+        </div>
+        <div class="modal-body">
+            <div class="modal-header">
+                <h2 class="modal-title" id="formuleTitle"></h2>
+                <span class="modal-price-badge" id="formulePrice"></span>
+            </div>
+            <p class="modal-desc" id="formuleDesc"></p>
+            <div class="modal-recipe-box" id="formuleRecipe"></div>
+            <span class="badge-fresh">100% PRODUITS FRAIS — 100% FAIT MAISON</span>
+        </div>
     </div>
 </div>
 
 <script>
-    function showTab(id) {
-        // 1. On cache toutes les pages
-        document.querySelectorAll('.tab-content').forEach(t => {
-            t.classList.remove('active');
-            t.style.display = 'none';
+// ── Navigation ──────────────────────────────────────
+function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => {
+        t.classList.remove('active');
+        t.style.display = 'none';
+    });
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.style.display = (id === 'carte') ? 'block' : 'flex';
+    requestAnimationFrame(() => requestAnimationFrame(() => target.classList.add('active')));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
+    const link = document.getElementById('l-' + id);
+    if (link) link.classList.add('active-link');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Modal helpers ────────────────────────────────────
+function openOverlay(id) {
+    const el = document.getElementById(id);
+    el.classList.add('opening');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('open')));
+}
+
+function closeModal(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('open');
+    setTimeout(() => el.classList.remove('opening'), 400);
+    document.body.style.overflow = '';
+}
+
+['productModal','formuleModal'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function(e) {
+        if (e.target === this) closeModal(id);
+    });
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeModal('productModal'); closeModal('formuleModal'); }
+});
+
+// ── Formule modal ────────────────────────────────────
+function openFormuleModal(title, price, desc, img, recipe) {
+    document.getElementById('formuleTitle').textContent = title;
+    document.getElementById('formulePrice').textContent = price;
+    document.getElementById('formuleDesc').textContent = desc;
+    document.getElementById('formuleRecipe').innerHTML = recipe.replace(/\n/g,'<br>');
+    const i = document.getElementById('formuleImg');
+    i.src = img; i.alt = title;
+    openOverlay('formuleModal');
+}
+
+// ── Image fallback map ───────────────────────────────
+const IMAGE_MAP = {
+    'Ragoût':       'photo-1547592166-23ac45744acd',
+    'boeuf':        'photo-1547592166-23ac45744acd',
+    'légumes':      'photo-1547592116-30656e430d9a',
+    'tomate':       'photo-1565299507177-b0ac66763828',
+    'fraise':       'photo-1589733955941-5eeaf752f6dd',
+    'banane':       'photo-1528498033373-3c6c08e93d79',
+    'orange':       'photo-1613478223719-2ab802602423',
+    'ananas':       'photo-1550617931-e17a7b70dce2',
+    'Chocolat':     'photo-1544787210-22bb840c5bcd',
+    'Thé vert':     'photo-1564890369478-c89ca6d9cde9',
+    'Matcha':       'photo-1582733315328-849999967059',
+    'Expresso':     'photo-1510591509098-f4fdc6d0ff04',
+    'Macchiato':    'photo-1485808191679-5f86510681a2',
+    'Cappuccino':   'photo-1572442388796-11668a67e53d',
+    'Donut':        'photo-1527515545081-5db817172677',
+    'Cheesecake':   'photo-1533134242443-d4fd215305ad',
+    'Cookies':      'photo-1499636136210-6f4ee915583e',
+    'Cosmo':        'photo-1533603017205-3b149f3aa991',
+    'Aviation':     'photo-1634500155683-999364e28821',
+};
+
+function getFallback(title) {
+    for (const [key, id] of Object.entries(IMAGE_MAP)) {
+        if (title.includes(key)) return `https://images.unsplash.com/${id}?q=85&w=800&auto=format&fit=crop`;
+    }
+    return 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=85&w=800&auto=format&fit=crop';
+}
+
+function loadImg(src, title) {
+    const img = document.getElementById('modalProductImg');
+    const sk = document.getElementById('imgSkeleton');
+    img.classList.remove('loaded');
+    img.src = '';
+    sk.style.display = 'flex';
+    img.alt = title;
+    img.onload = () => { sk.style.display = 'none'; img.classList.add('loaded'); };
+    img.onerror = () => {
+        sk.innerHTML = '<span style="font-size:3.5rem;opacity:0.4">🍽️</span>';
+    };
+    img.src = src;
+}
+
+// ── Produit modal avec image via Anthropic API ───────
+async function openProductModal(title, price, desc, recipe) {
+    document.getElementById('productTitle').textContent = title;
+    document.getElementById('productPrice').textContent = price;
+    document.getElementById('productDesc').textContent = desc;
+    document.getElementById('productRecipe').innerHTML = recipe.replace(/\n/g,'<br>');
+
+    const img = document.getElementById('modalProductImg');
+    const sk  = document.getElementById('imgSkeleton');
+    img.classList.remove('loaded');
+    img.src = '';
+    sk.style.display = 'flex';
+
+    openOverlay('productModal');
+
+    try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-20250514',
+                max_tokens: 120,
+                messages: [{
+                    role: 'user',
+                    content: `Donne-moi une URL d'image Unsplash réaliste pour : "${title}".
+Format requis : https://images.unsplash.com/photo-IDENTIFIANT?q=85&w=800&auto=format&fit=crop
+Réponds avec UNIQUEMENT l'URL, rien d'autre.`
+                }]
+            })
         });
-
-        // 2. On récupère la page cible
-        const target = document.getElementById(id);
-        if (!target) return;
-
-        // 3. On gère l'affichage selon le type de page
-        if(id === 'formules' || id === 'equipe' || id === 'contact' || id === 'accueil') {
-            target.style.display = 'flex';
-        } else {
-            target.style.display = 'block';
-        }
-        
-        // 4. Petit délai pour l'animation
-        setTimeout(() => target.classList.add('active'), 20);
-        
-        // 5. On met à jour les liens de la navigation
-        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
-        const link = document.getElementById('l-' + id);
-        if(link) link.classList.add('active-link');
-
-        // 6. On remonte en haut de page
-        window.scrollTo(0,0);
+        const data = await res.json();
+        const text = (data.content?.[0]?.text || '').trim();
+        const match = text.match(/https:\/\/images\.unsplash\.com\/photo-[\w-]+\?[^\s"<]*/);
+        loadImg(match ? match[0] : getFallback(title), title);
+    } catch {
+        loadImg(getFallback(title), title);
     }
-
-    function openModal(title, price, desc, img, recipe) {
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalPrice').innerText = price;
-        document.getElementById('modalDesc').innerText = desc;
-        document.getElementById('modalImg').src = img;
-        // On transforme les \n en sauts de ligne réels
-        document.getElementById('modalRecipe').innerHTML = recipe.replace(/\n/g, '<br>');
-        document.getElementById('itemModal').style.display = 'flex';
-    }
-
-    function closeModal() { 
-        document.getElementById('itemModal').style.display = 'none'; 
-    }
-
-    // Fermeture en cliquant à côté de la modale
-    window.onclick = function(e) { 
-        const modal = document.getElementById('itemModal');
-        if (e.target == modal) closeModal(); 
-    }
+}
 </script>
 
 </body>

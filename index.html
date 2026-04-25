@@ -17,7 +17,6 @@
         html{scroll-behavior:smooth}
         body{font-family:'Poppins',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
 
-        /* NAV */
         nav{position:fixed;top:0;width:100%;height:80px;background:rgba(10,10,10,0.85);backdrop-filter:blur(15px);display:flex;justify-content:space-between;align-items:center;padding:0 5%;z-index:1000;border-bottom:1px solid var(--glass-border)}
         .nav-left{display:flex;align-items:center;gap:12px;cursor:pointer}
         .logo-nav{height:55px;width:auto;object-fit:contain}
@@ -26,7 +25,6 @@
         .nav-links a{text-decoration:none;color:rgba(255,255,255,0.6);font-size:0.8rem;text-transform:uppercase;font-weight:600;cursor:pointer;transition:var(--transition)}
         .nav-links a:hover,.nav-links a.active-link{color:var(--accent)}
 
-        /* PAGES */
         .tab-content{display:none;min-height:100vh;background:var(--bg-gradient);padding:120px 20px 60px}
         #accueil,#formules,#equipe,#contact{display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center}
         .tab-content.active{display:flex!important;animation:fadeIn 0.5s ease-out}
@@ -69,7 +67,6 @@
         .contact-phone:last-child{margin-bottom:0}
         .contact-address{font-size:clamp(1.2rem,3vw,2.2rem);margin-bottom:35px;font-weight:300}
 
-        /* MODAL */
         .modal-overlay{display:none;position:fixed;z-index:2000;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0);align-items:center;justify-content:center;transition:background 0.4s ease,backdrop-filter 0.4s ease}
         .modal-overlay.opening{display:flex}
         .modal-overlay.open{background:rgba(0,0,0,0.93);backdrop-filter:blur(14px)}
@@ -92,33 +89,36 @@
         .modal-recipe-box{background:rgba(176,141,87,0.07);padding:18px 22px;border-radius:12px;margin-bottom:22px;border-left:3px solid var(--accent);line-height:2;font-size:0.95rem;color:rgba(255,255,255,0.82)}
         .badge-fresh{background:var(--success);color:white;padding:13px;border-radius:8px;font-weight:bold;display:block;width:100%;letter-spacing:1px;text-align:center;font-size:0.88rem}
 
-        /* ══════════ PANNEAU ADMIN ══════════ */
+        /* ADMIN */
         #adminBtn{position:fixed;bottom:20px;right:20px;z-index:3000;width:44px;height:44px;border-radius:50%;background:rgba(176,141,87,0.15);border:1px solid rgba(176,141,87,0.3);color:var(--accent);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
         #adminBtn:hover{background:rgba(176,141,87,0.3)}
-
         #adminOverlay{display:none;position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,0.96);backdrop-filter:blur(14px);align-items:center;justify-content:center}
         #adminOverlay.open{display:flex}
         #adminPanel{background:#0d0d0d;border:1px solid var(--accent);border-radius:20px;width:92%;max-width:720px;max-height:90vh;overflow-y:auto;padding:36px}
         #adminPanel h2{font-family:'Oswald',sans-serif;color:var(--accent);font-size:2rem;margin-bottom:6px}
         #adminPanel p.hint{color:rgba(255,255,255,0.4);font-size:0.82rem;margin-bottom:28px}
-
         .admin-row{display:grid;grid-template-columns:160px 1fr;align-items:center;gap:12px;margin-bottom:14px}
         .admin-row label{color:rgba(255,255,255,0.75);font-size:0.88rem;font-weight:600}
         .admin-row input{background:#151515;border:1px solid rgba(176,141,87,0.25);border-radius:8px;color:#fff;padding:10px 14px;font-size:0.85rem;font-family:'Poppins',sans-serif;width:100%;transition:var(--transition)}
         .admin-row input:focus{outline:none;border-color:var(--accent)}
         .admin-row input::placeholder{color:rgba(255,255,255,0.2)}
-
         .admin-section-title{font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--accent);border-left:3px solid var(--accent);padding-left:10px;margin:28px 0 16px}
-
-        .admin-actions{display:flex;gap:12px;margin-top:28px}
+        .admin-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
         .btn-save{flex:1;padding:14px;background:var(--accent);border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:1.1rem;border-radius:8px;cursor:pointer;transition:var(--transition)}
         .btn-save:hover{background:#8a6d43}
+        .btn-export{flex:1;padding:14px;background:#1a3a1a;border:1px solid var(--success);color:#6fcf6f;font-family:'Oswald',sans-serif;font-size:1.1rem;border-radius:8px;cursor:pointer;transition:var(--transition)}
+        .btn-export:hover{background:#2a5a2a}
         .btn-close-admin{padding:14px 24px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-family:'Oswald',sans-serif;font-size:1.1rem;border-radius:8px;cursor:pointer;transition:var(--transition)}
         .btn-close-admin:hover{border-color:rgba(255,255,255,0.4);color:#fff}
         .saved-toast{position:fixed;bottom:80px;right:20px;background:var(--success);color:#fff;padding:12px 20px;border-radius:10px;font-weight:600;font-size:0.9rem;z-index:5000;opacity:0;transform:translateY(10px);transition:all 0.3s ease;pointer-events:none}
         .saved-toast.show{opacity:1;transform:translateY(0)}
 
-        /* LOGIN */
+        /* EXPORT BOX */
+        #exportBox{display:none;margin-top:24px;background:#0a0a0a;border:1px solid var(--success);border-radius:12px;padding:20px}
+        #exportBox p{color:#6fcf6f;font-size:0.85rem;margin-bottom:12px;font-weight:600}
+        #exportBox textarea{width:100%;height:120px;background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.7);font-size:0.75rem;padding:12px;resize:none;font-family:monospace}
+        #exportBox .btn-copy{margin-top:10px;padding:10px 20px;background:var(--success);border:none;color:#fff;font-family:'Oswald',sans-serif;font-size:1rem;border-radius:8px;cursor:pointer;width:100%}
+
         #loginBox{text-align:center}
         #loginBox h3{font-family:'Oswald',sans-serif;color:var(--accent);font-size:1.8rem;margin-bottom:20px}
         #loginInput{background:#151515;border:1px solid rgba(176,141,87,0.3);border-radius:8px;color:#fff;padding:12px 18px;font-size:1rem;width:100%;max-width:300px;margin-bottom:14px;text-align:center}
@@ -245,7 +245,7 @@
     </div>
 </div>
 
-<!-- MODAL PRODUIT -->
+<!-- MODAL -->
 <div id="mainModal" class="modal-overlay" role="dialog" aria-modal="true">
     <div class="modal-panel">
         <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
@@ -276,7 +276,6 @@
 <div id="adminOverlay">
     <div id="adminPanel">
 
-        <!-- LOGIN -->
         <div id="loginBox">
             <h3>🔐 Accès Admin</h3>
             <p style="color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:20px">Entrez le mot de passe</p>
@@ -288,10 +287,9 @@
             <button class="btn-close-admin" onclick="closeAdmin()">Annuler</button>
         </div>
 
-        <!-- FORMULAIRE IMAGES (caché jusqu'au login) -->
         <div id="adminForm" style="display:none">
             <h2>🖼️ Gestion des images</h2>
-            <p class="hint">Colle le lien GitHub de ton image (blob ou raw). Le site convertit automatiquement.</p>
+            <p class="hint">Colle le lien GitHub (blob ou raw), le site convertit automatiquement. Ensuite clique <strong style="color:#6fcf6f">Exporter</strong> et upload le fichier sur GitHub.</p>
 
             <div class="admin-section-title">Formules</div>
             <div class="admin-row"><label>Menu Gourmand</label><input id="img_menu_gourmand" placeholder="https://github.com/gzd3100/Bean-Machine/blob/main/..."></div>
@@ -328,75 +326,77 @@
             <div class="admin-row"><label>Aviation</label><input id="img_aviation" placeholder="https://github.com/..."></div>
 
             <div class="admin-actions">
-                <button class="btn-save" onclick="saveImages()">💾 Sauvegarder</button>
+                <button class="btn-export" onclick="exportCode()">📦 Exporter index.html</button>
                 <button class="btn-close-admin" onclick="closeAdmin()">Fermer</button>
+            </div>
+
+            <div id="exportBox">
+                <p>✅ Ton fichier est prêt ! Clique pour télécharger et upload-le sur GitHub.</p>
+                <button class="btn-copy" onclick="downloadExport()">⬇️ Télécharger index.html</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="saved-toast" id="toast">✅ Images sauvegardées !</div>
+<div class="saved-toast" id="toast">✅ Exporté !</div>
 
 <script>
-// ── MOT DE PASSE ADMIN ── change "beanmachine" par ce que tu veux
-const ADMIN_PASSWORD = '130799';
+const ADMIN_PASSWORD = 'beanmachine';
 
-// ── Images par défaut (fallback) ──────────────────────────────
 const FALLBACK = {
-    img_menu_gourmand:   'https://picsum.photos/seed/gourmand/800/450',
-    img_menu_classique:  'https://picsum.photos/seed/classique/800/450',
-    img_menu_start:      'https://picsum.photos/seed/start/800/450',
-    img_ragout:          'https://picsum.photos/seed/ragout/800/450',
-    img_soupe_legumes:   'https://picsum.photos/seed/legumes/800/450',
-    img_soupe_tomate:    'https://picsum.photos/seed/tomate/800/450',
-    img_smoothie_fraise: 'https://picsum.photos/seed/fraise/800/450',
-    img_smoothie_banane: 'https://picsum.photos/seed/banane/800/450',
-    img_jus_orange:      'https://picsum.photos/seed/orange/800/450',
-    img_jus_ananas:      'https://picsum.photos/seed/ananas/800/450',
-    img_chocolat_chaud:  'https://picsum.photos/seed/choco/800/450',
-    img_the_vert:        'https://picsum.photos/seed/thevert/800/450',
-    img_expresso:        'https://picsum.photos/seed/expresso/800/450',
-    img_macchiato:       'https://picsum.photos/seed/macchiato/800/450',
-    img_cappuccino:      'https://picsum.photos/seed/cappuccino/800/450',
-    img_the_matcha:      'https://picsum.photos/seed/matcha/800/450',
-    img_donut_chocolat:  'https://picsum.photos/seed/donut1/800/450',
-    img_donut_fraise:    'https://picsum.photos/seed/donut2/800/450',
-    img_cheesecake:      'https://picsum.photos/seed/cheesecake/800/450',
-    img_cookies:         'https://picsum.photos/seed/cookies/800/450',
-    img_cosmo:           'https://picsum.photos/seed/cosmo/800/450',
-    img_aviation:        'https://picsum.photos/seed/aviation/800/450',
+    img_menu_gourmand:'https://picsum.photos/seed/gourmand/800/450',
+    img_menu_classique:'https://picsum.photos/seed/classique/800/450',
+    img_menu_start:'https://picsum.photos/seed/start/800/450',
+    img_ragout:'https://picsum.photos/seed/ragout/800/450',
+    img_soupe_legumes:'https://picsum.photos/seed/legumes/800/450',
+    img_soupe_tomate:'https://picsum.photos/seed/tomate/800/450',
+    img_smoothie_fraise:'https://picsum.photos/seed/fraise/800/450',
+    img_smoothie_banane:'https://picsum.photos/seed/banane/800/450',
+    img_jus_orange:'https://picsum.photos/seed/orange/800/450',
+    img_jus_ananas:'https://picsum.photos/seed/ananas/800/450',
+    img_chocolat_chaud:'https://picsum.photos/seed/choco/800/450',
+    img_the_vert:'https://picsum.photos/seed/thevert/800/450',
+    img_expresso:'https://picsum.photos/seed/expresso/800/450',
+    img_macchiato:'https://picsum.photos/seed/macchiato/800/450',
+    img_cappuccino:'https://picsum.photos/seed/cappuccino/800/450',
+    img_the_matcha:'https://picsum.photos/seed/matcha/800/450',
+    img_donut_chocolat:'https://picsum.photos/seed/donut1/800/450',
+    img_donut_fraise:'https://picsum.photos/seed/donut2/800/450',
+    img_cheesecake:'https://picsum.photos/seed/cheesecake/800/450',
+    img_cookies:'https://picsum.photos/seed/cookies/800/450',
+    img_cosmo:'https://picsum.photos/seed/cosmo/800/450',
+    img_aviation:'https://picsum.photos/seed/aviation/800/450',
 };
 
-// ── Convertit un lien GitHub blob en raw ─────────────────────
 function toRawUrl(url) {
     if (!url) return '';
     url = url.trim();
-    // Déjà en raw
     if (url.includes('raw.githubusercontent.com')) return url;
-    // Lien blob GitHub → raw
-    return url
-        .replace('https://github.com/', 'https://raw.githubusercontent.com/')
-        .replace('/blob/', '/');
+    return url.replace('https://github.com/','https://raw.githubusercontent.com/').replace('/blob/','/' );
 }
 
-// ── Charge les images sauvegardées depuis localStorage ───────
-function loadSaved() {
-    const saved = JSON.parse(localStorage.getItem('bm_images') || '{}');
+function getImages() {
+    const data = {};
     Object.keys(FALLBACK).forEach(key => {
-        if (saved[key]) {
-            const input = document.getElementById(key);
-            if (input) input.value = saved[key];
-        }
+        const input = document.getElementById(key);
+        if (input && input.value.trim()) data[key] = toRawUrl(input.value.trim());
     });
+    return data;
 }
 
 function getImg(key) {
-    const saved = JSON.parse(localStorage.getItem('bm_images') || '{}');
-    const url = saved[key] ? toRawUrl(saved[key]) : '';
-    return url || FALLBACK[key];
+    const imgs = window._exportedImgs || {};
+    return imgs[key] || FALLBACK[key];
 }
 
-// ── Navigation ────────────────────────────────────────────────
+function loadSaved() {
+    const saved = JSON.parse(localStorage.getItem('bm_images') || '{}');
+    Object.keys(FALLBACK).forEach(key => {
+        const input = document.getElementById(key);
+        if (input && saved[key]) input.value = saved[key];
+    });
+}
+
 function showTab(id) {
     document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.style.display='none'; });
     const target = document.getElementById(id);
@@ -409,24 +409,18 @@ function showTab(id) {
     window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ── Modal produit ─────────────────────────────────────────────
 function openModal(title, price, desc, imgKey, recipe) {
-    document.getElementById('modalTitle').textContent  = title;
-    document.getElementById('modalPrice').textContent  = price;
-    document.getElementById('modalDesc').textContent   = desc;
-    document.getElementById('modalRecipe').innerHTML   = recipe.replace(/\n/g,'<br>');
-
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalPrice').textContent = price;
+    document.getElementById('modalDesc').textContent  = desc;
+    document.getElementById('modalRecipe').innerHTML  = recipe.replace(/\n/g,'<br>');
     const img = document.getElementById('modalImg');
     const sk  = document.getElementById('imgSkeleton');
-    img.classList.remove('loaded');
-    img.src='';
-    sk.style.display='flex';
-
+    img.classList.remove('loaded'); img.src=''; sk.style.display='flex';
     const src = getImg(imgKey);
     img.onload  = () => { sk.style.display='none'; img.classList.add('loaded'); };
-    img.onerror = () => { img.onerror=null; img.src=FALLBACK[imgKey]||'https://picsum.photos/seed/food/800/450'; };
+    img.onerror = () => { img.onerror=null; img.src=FALLBACK[imgKey]; };
     img.src = src;
-
     const overlay = document.getElementById('mainModal');
     overlay.classList.add('opening');
     document.body.style.overflow='hidden';
@@ -440,26 +434,21 @@ function closeModal() {
     document.body.style.overflow='';
 }
 
-document.getElementById('mainModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') { closeModal(); closeAdmin(); } });
+document.getElementById('mainModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeModal(); closeAdmin(); } });
 
-// ── ADMIN ─────────────────────────────────────────────────────
 function openAdmin() {
     document.getElementById('loginBox').style.display='block';
     document.getElementById('adminForm').style.display='none';
     document.getElementById('loginInput').value='';
     document.getElementById('loginError').textContent='';
+    document.getElementById('exportBox').style.display='none';
     document.getElementById('adminOverlay').classList.add('open');
     setTimeout(() => document.getElementById('loginInput').focus(), 100);
 }
-
-function closeAdmin() {
-    document.getElementById('adminOverlay').classList.remove('open');
-}
-
+function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
 function checkLogin() {
-    const val = document.getElementById('loginInput').value;
-    if (val === ADMIN_PASSWORD) {
+    if (document.getElementById('loginInput').value === ADMIN_PASSWORD) {
         document.getElementById('loginBox').style.display='none';
         document.getElementById('adminForm').style.display='block';
         loadSaved();
@@ -468,23 +457,49 @@ function checkLogin() {
         document.getElementById('loginInput').value='';
     }
 }
+document.getElementById('adminOverlay').addEventListener('click', function(e){ if(e.target===this) closeAdmin(); });
 
-function saveImages() {
-    const data = {};
-    Object.keys(FALLBACK).forEach(key => {
-        const input = document.getElementById(key);
-        if (input && input.value.trim()) data[key] = input.value.trim();
-    });
-    localStorage.setItem('bm_images', JSON.stringify(data));
+// ── EXPORT ───────────────────────────────────────────────────
+let _exportedCode = '';
 
+function exportCode() {
+    const imgs = getImages();
+    // Sauvegarde aussi en localStorage pour la session
+    localStorage.setItem('bm_images', JSON.stringify(imgs));
+    window._exportedImgs = imgs;
+
+    // On génère le JS des images dans le code exporté
+    const imgsJson = JSON.stringify(imgs, null, 4);
+
+    // On récupère le HTML actuel et on remplace le bloc FALLBACK + _exportedImgs
+    const inject = `
+    // ── Images configurées via l'admin ──
+    window._exportedImgs = ${imgsJson};
+    `;
+
+    // On prend tout le HTML de la page et on injecte les URLs avant la fermeture body
+    let html = document.documentElement.outerHTML;
+    // On remplace le placeholder window._exportedImgs s'il existe déjà
+    html = html.replace(/\/\/ ── Images configurées via l'admin ──[\s\S]*?};/, '');
+    // On injecte juste avant </body>
+    html = html.replace('</body>', `<script>${inject}<\/script></body>`);
+
+    _exportedCode = '<!DOCTYPE html>\n' + html;
+
+    document.getElementById('exportBox').style.display='block';
+    document.getElementById('exportBox').scrollIntoView({behavior:'smooth'});
+}
+
+function downloadExport() {
+    const blob = new Blob([_exportedCode], {type:'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'index.html';
+    a.click();
     const toast = document.getElementById('toast');
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2500);
 }
-
-document.getElementById('adminOverlay').addEventListener('click', function(e) {
-    if(e.target===this) closeAdmin();
-});
 </script>
 </body>
 </html>

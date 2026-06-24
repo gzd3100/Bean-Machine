@@ -86,7 +86,9 @@
         .reveal { opacity:0; transform:translateY(36px); transition:opacity 0.55s var(--ease-smooth), transform 0.55s var(--ease-smooth); will-change:opacity,transform; }
         .reveal.visible { opacity:1; transform:translateY(0); }
 
-        .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:24px; width:100%; }
+        /* Correction CSS pour centrer parfaitement les éléments de la grille */
+        .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr)); gap:24px; width:100%; justify-content:center; }
+        .grid-center { grid-template-columns:repeat(auto-fit, minmax(270px, 320px)); }
 
         .card {
             background:var(--glass); padding:48px 22px; border-radius:16px;
@@ -118,7 +120,7 @@
             animation:badge-pop 0.5s var(--ease-bounce) both;
         }
 
-        .formule-card { background:var(--glass); padding:56px 22px; border-radius:16px; border:1px solid var(--border); text-align:center; cursor:pointer; position:relative; overflow:hidden; transition:transform 0.4s var(--ease-bounce), border-color 0.3s, box-shadow 0.3s, background 0.3s; will-change:transform; -webkit-tap-highlight-color:transparent; }
+        .formule-card { background:var(--glass); padding:56px 22px; border-radius:16px; border:1px solid var(--border); text-align:center; cursor:pointer; position:relative; overflow:hidden; transition:transform 0.4s var(--ease-bounce), border-color 0.3s, box-shadow 0.3s, background 0.3s; will-change:transform; -webkit-tap-highlight-color:transparent; width:100%; }
         .formule-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg, transparent, var(--accent), transparent); transform:scaleX(0); transform-origin:center; transition:transform 0.4s var(--ease-smooth); }
         .formule-card:hover { transform:translateY(-10px); border-color:var(--accent); background:rgba(176,141,87,0.06); box-shadow:0 20px 50px rgba(0,0,0,0.5); }
         .formule-card:hover::after { transform:scaleX(1); }
@@ -136,7 +138,7 @@
         .btn-hero:hover::after { transform:translateX(110%) skewX(-15deg); }
         .btn-hero:active { transform:scale(0.98); }
 
-        .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; width:100%; }
+        .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; width:100%; justify-content:center; }
         .team-card { display:flex; align-items:center; gap:22px; background:var(--glass); padding:32px; border-radius:18px; border:1px solid var(--border); text-align:left; transition:transform 0.3s var(--ease-smooth), border-color 0.3s, background 0.3s; cursor:default; }
         .team-card:hover { transform:translateX(6px); border-color:var(--accent); background:rgba(176,141,87,0.04); }
         .team-avatar { width:82px; height:82px; min-width:82px; background:#2a1810; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-family:'Oswald',sans-serif; color:var(--accent); border:2px solid var(--accent); transition:transform 0.3s var(--ease-bounce), box-shadow 0.3s; position:relative; }
@@ -201,6 +203,7 @@
             .tab-content { padding:90px 16px 70px; }
             .hero img { width:min(200px,50vw); }
             .grid { grid-template-columns:1fr 1fr; gap:14px; }
+            .grid-center { grid-template-columns:1fr 1fr; }
             .card { padding:32px 14px; }
             .card h3 { font-size:1.4rem; }
             .card-icon { font-size:2rem; }
@@ -213,6 +216,7 @@
         }
         @media (max-width:420px) {
             .grid { grid-template-columns:1fr; }
+            .grid-center { grid-template-columns:1fr; }
             .section-title { font-size:2rem; }
         }
 
@@ -240,6 +244,7 @@
     </button>
 </nav>
 
+<!-- ACCUEIL -->
 <div id="accueil" class="tab-content active" style="padding:0">
     <section class="hero">
         <img src="logo.webp" alt="Logo Bean Machine" onerror="this.style.display='none'" loading="eager">
@@ -274,22 +279,24 @@
     </footer>
 </div>
 
+<!-- FORMULES -->
 <div id="formules" class="tab-content">
     <div class="container">
         <h2 class="section-title reveal">Nos Formules</h2>
-        <div class="grid">
-            <div class="formule-card reveal" onclick="openModal('Menu Gourmand','70$','L\'expérience complète Bean Machine.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_08.png','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche\n- Un dessert\n- Une boisson chaude incluse')"><h3>Menu Gourmand</h3><p class="price-tag">70$</p></div>
-            <div class="formule-card reveal" onclick="openModal('Menu Classique','40$','L\'essentiel pour un bon repas.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_13.png','Ce menu contient :\n- Un Gaspacho de Tomate\n- Un Jus de fruit au choix')"><h3>Menu Classique</h3><p class="price-tag">40$</p></div>
+        <div class="grid grid-center reveal">
+            <div class="formule-card" onclick="openModal('Menu Gourmand','70$','L\'expérience complète Bean Machine.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_08.png','Ce menu contient :\n- Un plat au choix\n- Une boisson fraîche\n- Un dessert\n- Une boisson chaude incluse')"><h3>Menu Gourmand</h3><p class="price-tag">70$</p></div>
+            <div class="formule-card" onclick="openModal('Menu Classique','40$','L\'essentiel pour un bon repas.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2004_23_13.png','Ce menu contient :\n- Un Gaspacho de Tomate\n- Un Jus de fruit au choix')"><h3>Menu Classique</h3><p class="price-tag">40$</p></div>
         </div>
     </div>
 </div>
 
+<!-- CARTE -->
 <div id="carte" class="tab-content">
     <div class="container">
         <h2 class="section-title reveal">La Carte</h2>
 
         <h3 class="sub-category reveal">Nourritures — 50$</h3>
-        <div class="grid">
+        <div class="grid grid-center">
             <div class="card reveal" onclick="openModal('Ragoût de boeuf','50$','Un plat généreux et mijoté lentement pour une viande fondante.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ragout_boeuf.png','Sélection de pièces de bœuf braisées longuement dans une réduction de tomates fraîches, accompagnées de carottes fondantes et d\'oignons caramélisés.')"><span class="card-icon">🥘</span><h3>Ragoût de boeuf</h3><p class="price-tag">50$</p></div>
             <div class="card reveal" onclick="openModal('Soupe de légumes','50$','Un cocktail de vitamines frais et léger.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_legume.png','Un velouté de saison préparé à partir de légumes du marché, mariant la douceur de la pomme de terre à l\'onctuosité de l\'aubergine.')"><span class="card-icon">🥦</span><h3>Soupe de légumes</h3><p class="price-tag">50$</p></div>
             <div class="card reveal" onclick="openModal('Gaspacho de Tomate','50$','Une soupe froide espagnole aux saveurs estivales et ensoleillées.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/soupe_tomate.png','Tomates mûres mixées avec concombre frais, poivron rouge et une pointe d\'ail, relevées d\'un filet d\'huile d\'olive extra vierge. Servi frais pour une explosion de saveurs méditerranéennes.')">
@@ -301,7 +308,7 @@
         </div>
 
         <h3 class="sub-category reveal">Boissons fraîches — 25$</h3>
-        <div class="grid">
+        <div class="grid grid-center">
             <div class="card reveal" onclick="openModal('Smoothie fraise','25$','Une douceur fruitée et rafraîchissante.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/smoothie_fraise.png','Des fraises fraîchement cueillies mixées avec une pointe de sucre de canne pour une texture onctueuse.')"><span class="card-icon">🍓</span><h3>Smoothie fraise</h3><p class="price-tag">25$</p></div>
             <div class="card reveal" onclick="openModal('Smoothie banane','25$','Onctuosité et énergie dans un seul verre.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_28_59.png','Une préparation onctueuse à base de bananes mûres sélectionnées, travaillée pour obtenir une crème légère et énergisante.')"><span class="card-icon">🍌</span><h3>Smoothie banane</h3><p class="price-tag">25$</p></div>
             <div class="card reveal" onclick="openModal('Jus d\'orange','25$','Le classique indispensable pressé minute.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_29_41.png','Une extraction pure d\'oranges gorgées de soleil, pressées à la demande pour garantir une fraîcheur optimale.')"><span class="card-icon">🍊</span><h3>Jus d'orange</h3><p class="price-tag">25$</p></div>
@@ -310,7 +317,7 @@
         </div>
 
         <h3 class="sub-category reveal">Boissons chaudes — 30$</h3>
-        <div class="grid">
+        <div class="grid grid-center">
             <div class="card reveal" onclick="openModal('Chocolat chaud','30$','Réconfort et gourmandise chocolatée.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_56.png','Une ganache de cacao pur fondue dans un lait soyeux, délicatement sucrée pour une expérience gourmande incomparable.')"><span class="card-icon">🍫</span><h3>Chocolat chaud</h3><p class="price-tag">30$</p></div>
             <div class="card reveal" onclick="openModal('Thé vert','30$','L\'élégance d\'une infusion millénaire.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_43_03.png','Une infusion délicate de feuilles de thé vert sélectionnées, offrant des notes végétales et une finale pure en bouche.')"><span class="card-icon">🍵</span><h3>Thé vert</h3><p class="price-tag">30$</p></div>
             <div class="card reveal" onclick="openModal('Expresso','30$','L\'essence même du café pour un réveil intense.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/espresso.png','Un shot de caféine pur extrait sous haute pression à partir de nos grains torréfiés maison, pour un arôme puissant.')"><span class="card-icon">☕</span><h3>Expresso</h3><p class="price-tag">30$</p></div>
@@ -319,7 +326,7 @@
         </div>
 
         <h3 class="sub-category reveal">Desserts — 30$</h3>
-        <div class="grid">
+        <div class="grid grid-center">
             <div class="card reveal" onclick="openModal('Donut chocolat','30$','Le plaisir régressif incontournable.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_36.png','Une pâte levée moelleuse enrobée d\'un glaçage fondant au chocolat noir intense et éclats gourmands.')"><span class="card-icon">🍩</span><h3>Donut chocolat</h3><p class="price-tag">30$</p></div>
             <div class="card reveal" onclick="openModal('Donut fraise','30$','Une touche de fraîcheur acidulée.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_32.png','Un beignet aérien nappé d\'un coulis de fraises fraîches pour une douceur fruitée en fin de repas.')"><span class="card-icon">🍩</span><h3>Donut fraise</h3><p class="price-tag">30$</p></div>
             <div class="card reveal" onclick="openModal('Cheesecake','30$','L\'onctuosité new-yorkaise à Los Santos.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_29.png','Une crème de fromage frais onctueuse sur un biscuit croustillant au beurre noisette, parfumée à la vanille de Bourbon.')"><span class="card-icon">🍰</span><h3>Cheesecake</h3><p class="price-tag">30$</p></div>
@@ -327,26 +334,30 @@
         </div>
 
         <h3 class="sub-category reveal">Cocktails — 75$</h3>
-        <div class="grid">
+        <div class="grid grid-center">
             <div class="card reveal" onclick="openModal('Cosmo','75$','L\'élégance urbaine dans un verre.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_59_22.png','Un mélange raffiné de vodka premium, de triple sec et de jus de cranberry, twisté d\'un zeste de citron vert frais.')"><span class="card-icon">🍸</span><h3>Cosmo</h3><p class="price-tag">75$</p></div>
             <div class="card reveal" onclick="openModal('Aviation','75$','Un voyage sensoriel aux notes florales.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_57_35.png','Une alliance subtile de gin botanique, de crème de violette et de liqueur de marasquin pour un cocktail iconique.')"><span class="card-icon">🍹</span><h3>Aviation</h3><p class="price-tag">75$</p></div>
+            <div class="card reveal" onclick="openModal('Irish Coffee','75$','Le puissant réconfort d\'un café corsé au caractère irlandais.','https://raw.githubusercontent.com/gzd3100/Bean-Machine/main/ChatGPT%20Image%2025%20avr.%202026%2C%2003_31_56.png','Un espresso bien chaud combiné à la force d\'un authentique Whiskey irlandais, adouci par une généreuse couche de crème fouettée soyeuse.')"><span class="card-icon">☕ Irish Coffee</span><h3>Irish Coffee</h3><p class="price-tag">75$</p></div>
         </div>
     </div>
 </div>
 
+<!-- ÉQUIPE -->
 <div id="equipe" class="tab-content">
     <div class="container">
         <h2 class="section-title reveal">L'Équipe</h2>
-        <div class="team-grid">
-            <div class="team-card reveal"><div class="team-avatar">HY</div><div><h3>Hina Yorikawa</h3><p class="team-role">Patronne</p></div></div>
-            <div class="team-card reveal"><div class="team-avatar">DS</div><div><h3>Daichi Sato</h3><p class="team-role">Co-Patron</p></div></div>
-            <div class="team-card reveal"><div class="team-avatar">TK</div><div><h3>Takumi Kurogane</h3><p>Employé</p></div></div>
-            <div class="team-card reveal"><div class="team-avatar">DW</div><div><h3>Darius Wolff</h3><p>Employé</p></div></div>
-            <div class="team-card reveal"><div class="team-avatar">HA</div><div><h3>Hayabusa</h3><p>Employé</p></div></div>
+        <div class="team-grid reveal">
+            <div class="team-card"><div class="team-avatar">HY</div><div><h3>Hina Yorikawa</h3><p class="team-role">Patronne</p></div></div>
+            <div class="team-card"><div class="team-avatar">DS</div><div><h3>Daichi Sato</h3><p class="team-role">Co-Patron</p></div></div>
+            <div class="team-card"><div class="team-avatar">CW</div><div><h3>Colby Whittaker</h3><p class="team-role">Employé</p></div></div>
+            <div class="team-card"><div class="team-avatar">JB</div><div><h3>Julie Blake</h3><p class="team-role">Employée</p></div></div>
+            <div class="team-card"><div class="team-avatar">TK</div><div><h3>Takumi Kurogane</h3><p class="team-role">Employé</p></div></div>
+            <div class="team-card"><div class="team-avatar">HA</div><div><h3>Hayabusa</h3><p class="team-role">Employé</p></div></div>
         </div>
     </div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="tab-content">
     <div class="container" style="display:flex;justify-content:center">
         <div class="contact-box reveal">
@@ -360,6 +371,7 @@
     </div>
 </div>
 
+<!-- MODAL -->
 <div id="mainModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-panel">
         <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
